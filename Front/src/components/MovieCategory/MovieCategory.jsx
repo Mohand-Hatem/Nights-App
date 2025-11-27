@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import useGetMovies from "../../Hooks/useGetMovies";
 import back from "../../assets/images/backit.jpg";
