@@ -1,5 +1,5 @@
 import Marquee from "react-fast-marquee";
-import HBO from "../../assets/images/HBO.jpg";
+import HBO from "../../assets/images/hbo.jpg";
 import netflix from "../../assets/images/netflix.jpg";
 import prime from "../../assets/images/prime.png";
 import disney from "../../assets/images/disney.jpg";
