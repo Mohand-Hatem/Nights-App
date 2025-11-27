@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function MovieCategory() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const targetref = React.useRef(null);
+  const targetref = useRef(null);
   const isInView = useInView(targetref, { once: true, margin: "-500px" });
 
   const NaviCard = useNavigate();
@@ -38,7 +38,7 @@ function MovieCategory() {
         initial={{ opacity: 0, y: -20 }}
         animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
-        className="rounded-bl-3xl flex-wrap justify-center rounded-tr-3xl p-2 my-10 bg-gray-950/40 w-fit mx-auto flex gap-1 "
+        className="rounded-bl-3xl relative z-40 flex-wrap justify-center rounded-tr-3xl p-2 my-10 bg-gray-950/40 w-fit mx-auto flex gap-1 "
       >
         {MovieCat.map((category, index) => (
           <li
