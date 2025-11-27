@@ -14,7 +14,7 @@ function MovieCategory() {
     "Historical",
   ]);
   const targetref = useRef(false);
-  const isInView = useInView(targetref, { once: true });
+  const isInView = useInView(targetref);
 
   const NaviCard = useNavigate();
   const { data: movies } = useGetMovies();

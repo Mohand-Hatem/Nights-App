@@ -18,8 +18,8 @@ function Home() {
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 8;
 
-  const targetRef = useRef(null);
-  const isInView = useInView(targetRef, { once: true, margin: "-100px" });
+  const targetRef = useRef(false);
+  const isInView = useInView(targetRef, { once: true });
 
   if (isLoading) {
     return (
