@@ -13,7 +13,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "http://localhost:5173", // React frontend URL
+    origin: "https://nights-app.vercel.app/", // React frontend URL
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
