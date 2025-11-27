@@ -6,11 +6,17 @@ import { useNavigate } from "react-router-dom";
 
 function MovieCategory() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [MovieCat, setMovieCat] = useState([
+    "Crime",
+    "Drama",
+    "Fiction",
+    "Horror",
+    "Historical",
+  ]);
   const targetref = useRef(null);
   const isInView = useInView(targetref, { once: true, margin: "-500px" });
 
   const NaviCard = useNavigate();
-  const MovieCat = ["Crime", "Drama", "Fiction", "Horror", "Historical"];
   const { data: movies } = useGetMovies();
 
   const filteredMovies = movies
