@@ -34,7 +34,7 @@ app.use("/api/cart", Cart);
 
 ConnectDB();
 
-// app.listen(process.env.PORT_NUM || 7000, () => {
-//   console.log(`Server Running On Port ${process.env.PORT_NUM}`);
-// });
+app.listen(process.env.PORT_NUM || 7000, () => {
+  console.log(`Server Running On Port ${process.env.PORT_NUM}`);
+});
 export default app;
