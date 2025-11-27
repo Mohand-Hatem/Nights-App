@@ -130,8 +130,12 @@ export default function Navbar() {
             </button>
           ) : (
             <>
-              <NavLink to="/register">Register</NavLink>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/register" className="text-white">
+                Register
+              </NavLink>
+              <NavLink to="/login" className="text-white">
+                Login
+              </NavLink>
             </>
           )}
         </div>
@@ -169,8 +173,12 @@ export default function Navbar() {
           </button>
         ) : (
           <>
-            <NavLink to="/register">Register</NavLink>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/register" className="text-white">
+              Register
+            </NavLink>
+            <NavLink to="/login" className="text-white">
+              Login
+            </NavLink>
           </>
         )}
       </div>
