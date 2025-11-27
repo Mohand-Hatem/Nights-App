@@ -1,0 +1,42 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Node modules (frontend + backend)
+Front/node_modules/
+Back/node_modules/
+node_modules/
+
+# Build outputs
+dist/
+Front/dist/
+Back/dist/
+Front/dist-ssr/
+Back/dist-ssr/
+
+# Local environment files
+Front/.env
+Front/.env.local
+Front/.env.*.local
+Back/.env
+Back/.env.local
+Back/.env.*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Lock files
+*.pid
