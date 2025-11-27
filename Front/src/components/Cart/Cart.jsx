@@ -192,7 +192,10 @@ function Cart() {
                 <span>${one?.bookId?.price}</span>
               </div>
 
-              <button className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+              <button
+                onClick={() => deleteCart.mutate(one._id)}
+                className="mt-2 w-full py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
+              >
                 Remove
               </button>
             </div>

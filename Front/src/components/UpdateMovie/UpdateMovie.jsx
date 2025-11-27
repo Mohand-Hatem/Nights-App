@@ -52,7 +52,7 @@ function UpdateMovie() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-3 xl:grid-cols-4 gap-3 overflow-y-scroll overflow-clip h-120 modify">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-3 xl:grid-cols-4 gap-3 overflow-y-scroll overflow-clip md:h-150 modify">
         {currentMovies?.map((movie) => (
           <MovieCard key={movie._id} movie={movie} />
         ))}

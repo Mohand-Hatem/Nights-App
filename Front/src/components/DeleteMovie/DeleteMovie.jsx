@@ -60,7 +60,7 @@ function DeleteMovie() {
         </p>
       </div>
 
-      <div className="grid modify grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 overflow-y-scroll overflow-clip h-120 bg-gray-950 ">
+      <div className="grid modify grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 overflow-y-scroll overflow-clip md:h-150 bg-gray-950 ">
         {currentMovies.map((one) => (
           <div
             key={one._id}
