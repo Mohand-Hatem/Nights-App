@@ -42,7 +42,7 @@ function BookInfo() {
       initial={{ opacity: 0, y: 40 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className=" mt-10 p-6 md:p-12  mx-auto "
+      className=" mt-15 md:mt-10 p-6 md:p-12  mx-auto "
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
