@@ -3,7 +3,7 @@ import netflix from "../../assets/images/netflix.jpg";
 import prime from "../../assets/images/prime.png";
 import disney from "../../assets/images/disney.jpg";
 import youtube from "../../assets/images/youtube.jpg";
-import apple from "../../assets/images/Apple.jpg";
+import apple from "../../assets/images/apple.jpg";
 
 const images = [netflix, prime, disney, apple, youtube];
 
