@@ -40,10 +40,10 @@ function MovieCategory() {
       </h2>
 
       <motion.ul
-        ref={targetref}
-        initial={{ opacity: 0, y: -20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
+        // ref={targetref}
+        // initial={{ opacity: 0, y: -20 }}
+        // animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+        // transition={{ duration: 0.5 }}
         className="rounded-bl-3xl relative z-40 flex-wrap justify-center rounded-tr-3xl p-2 my-10 bg-gray-950/40 w-fit mx-auto flex gap-1 "
       >
         {MovieCat.map((category, index) => (
