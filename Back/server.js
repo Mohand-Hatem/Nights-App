@@ -13,7 +13,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://nights-app.vercel.app/", // React frontend URL
+    origin: `${process.env.FRONTEND_URL}`, // React frontend URL
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
