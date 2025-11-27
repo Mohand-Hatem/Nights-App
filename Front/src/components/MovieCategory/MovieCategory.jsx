@@ -36,16 +36,12 @@ function MovieCategory() {
       <motion.ul
         ref={targetref}
         initial={{ opacity: 0, y: -20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
         transition={{ duration: 0.5 }}
         className="rounded-bl-3xl flex-wrap justify-center rounded-tr-3xl p-2 my-10 bg-gray-950/40 w-fit mx-auto flex gap-1 "
       >
         {MovieCat.map((category, index) => (
-          <motion.li
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.3, delay: index * 0.1 }}
-            key={index}
+          <li
             onClick={() => setActiveIndex(index)}
             className={` text-white px-2 basis-2/6 md:basis-1/6 rounded-bl-3xl rounded-tr-3xl md:px-5 py-2 cursor-pointer transition-all duration-300
               ${
@@ -55,7 +51,7 @@ function MovieCategory() {
               }`}
           >
             {category}
-          </motion.li>
+          </li>
         ))}
       </motion.ul>
 
