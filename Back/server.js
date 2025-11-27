@@ -13,7 +13,7 @@ const app = express();
 app.use(cookieParser());
 app.use(
   cors({
-    origin: `${process.env.FRONTEND_URL}`, // React frontend URL
+    origin: process.env.FRONTEND_URL, // React frontend URL
     methods: "GET,POST,PUT,DELETE",
     credentials: true,
   })
@@ -34,6 +34,7 @@ app.use("/api/cart", Cart);
 
 ConnectDB();
 
-app.listen(process.env.PORT_NUM || 7000, () => {
-  console.log(`Server Running On Port ${process.env.PORT_NUM}`);
-});
+// app.listen(process.env.PORT_NUM || 7000, () => {
+//   console.log(`Server Running On Port ${process.env.PORT_NUM}`);
+// });
+export default app;
