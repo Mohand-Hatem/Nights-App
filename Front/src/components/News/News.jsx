@@ -20,7 +20,7 @@ function News() {
     );
 
   return (
-    <div className="mx-auto w-full  lg:w-[110%] relative lg:-left-[5%] -mb-20 bg-gray-950 py-20">
+    <div className="mx-auto w-full  xl:w-[110%] relative xl:right-[5%] -mb-20 bg-gray-950 py-20">
       <div className="max-w-4xl md:max-w-6xl mx-auto px-6">
         <div className="relative mb-12 ">
           <h1 className="text-3xl md:text-5xl py-5 font-extrabold bg-linear-to-r from-[#c5814b] to-[#ffb77a] bg-clip-text text-transparent">

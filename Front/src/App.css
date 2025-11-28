@@ -31,10 +31,8 @@ body {
 .parent {
   margin-left: 1rem;
   margin-right: 1rem;
-  /* overflow: hidden; */
 }
 
-/*Siwper*/
 .swiper-pagination {
   bottom: 0px !important;
   margin-top: 20px;
@@ -50,7 +48,6 @@ body {
   border: 1px solid #fff;
 }
 
-/* Active bullet */
 .swiper-pagination-bullet-active {
   width: 28px;
   height: 60px;
@@ -62,7 +59,6 @@ body {
   transform: scale(1.15);
 }
 
-/* Hover effect */
 .swiper-pagination-bullet:hover {
   transform: scale(1.3);
   opacity: 1;
@@ -138,7 +134,7 @@ body {
   padding: 0;
 }
 
-.page-item {
+.page-item a {
   list-style: none;
   padding: 8px 14px;
   border-radius: 8px;
@@ -150,14 +146,14 @@ body {
   border: 1px solid #333;
 }
 
-.page-item:hover {
+.page-item a:hover {
   background: #3b71ca;
   border-color: #3b71ca;
   transform: translateY(-3px);
   box-shadow: 0px 4px 12px rgba(59, 113, 202, 0.4);
 }
 
-.actives {
+.actives a {
   background: #3b71ca !important;
   border-color: #3b71ca !important;
   color: white;

@@ -42,14 +42,14 @@ function ContactUs() {
   });
 
   return (
-    <div className="relative min-h-screen rounded-4xl md:-left-[110px] mx-auto md:w-[110%] mt-19 bg-linear-to-r from-gray-900 via-gray-900 to-black flex items-center justify-center md:p-6 overflow-hidden">
+    <div className="relative min-h-screen rounded-4xl xl:right-[5%]  mx-auto xl:w-[110%] mt-20 bg-linear-to-r from-gray-900 via-gray-900 to-black flex items-center justify-center md:p-6 overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full">
         <div className="absolute bg-amber-700/20 w-96 h-96 rounded-full -top-40 -left-40 animate-pulse-slow"></div>
         <div className="absolute bg-yellow-500/20 w-72 h-72 rounded-full -bottom-32 -right-32 animate-pulse-slow"></div>
         <div className="absolute bg-cyan-500/10 w-64 h-64 rounded-full top-1/2 left-1/3 animate-pulse-slow"></div>
       </div>
 
-      <div className="relative z-10 md:-right-[60px] bg-gray-900/50 backdrop-blur-xl rounded-3xl shadow-2xl max-w-7xl w-full p-12 flex flex-col md:flex-row gap-10 -mt-10">
+      <div className="relative z-10  bg-gray-900/50 backdrop-blur-xl rounded-3xl shadow-2xl max-w-7xl w-full p-12 flex flex-col md:flex-row gap-10 -mt-10">
         <motion.div
           initial={{ x: -50, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
