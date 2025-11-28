@@ -138,13 +138,13 @@ export default function Navbar() {
               </NavLink>
               <NavLink
                 to="/news"
-                className="hover:scale-[1.1] transition-all duration-150"
+                className="hover:scale-[1.1] transition-all duration-150 text-white"
               >
                 News
               </NavLink>
               <NavLink
                 to="/contact"
-                className="hover:scale-[1.1] transition-all duration-150"
+                className="hover:scale-[1.1] transition-all duration-150 text-white"
               >
                 Contact
               </NavLink>
@@ -193,13 +193,13 @@ export default function Navbar() {
             </NavLink>
             <NavLink
               to="/news"
-              className="hover:scale-[1.1] transition-all duration-150"
+              className="hover:scale-[1.1] transition-all duration-150 text-white"
             >
               News
             </NavLink>
             <NavLink
               to="/contact"
-              className="hover:scale-[1.1] transition-all duration-150"
+              className="hover:scale-[1.1] transition-all duration-150 text-white"
             >
               Contact
             </NavLink>
