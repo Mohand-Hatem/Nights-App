@@ -111,7 +111,7 @@ export default function Navbar() {
       ${isScrolled ? "bg-black/80 py-2" : "bg-gray-900 py-3"}`}
     >
       <nav className="flex justify-between items-center">
-        <Link to="/home" className="flex items-center gap-2">
+        <Link to="#" className="flex items-center gap-2">
           <img src={logo} className="w-12 drop-shadow-lg" />
           <h1 className="text-2xl font-extrabold font-mono bg-linear-to-r from-[#c5814b] to-[#ffb77a] bg-clip-text text-transparent">
             Nights
@@ -135,6 +135,18 @@ export default function Navbar() {
               </NavLink>
               <NavLink to="/login" className="text-white">
                 Login
+              </NavLink>
+              <NavLink
+                to="/news"
+                className="hover:scale-[1.1] transition-all duration-150"
+              >
+                News
+              </NavLink>
+              <NavLink
+                to="/contact"
+                className="hover:scale-[1.1] transition-all duration-150"
+              >
+                Contact
               </NavLink>
             </>
           )}
@@ -178,6 +190,18 @@ export default function Navbar() {
             </NavLink>
             <NavLink to="/login" className="text-white">
               Login
+            </NavLink>
+            <NavLink
+              to="/news"
+              className="hover:scale-[1.1] transition-all duration-150"
+            >
+              News
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className="hover:scale-[1.1] transition-all duration-150"
+            >
+              Contact
             </NavLink>
           </>
         )}
