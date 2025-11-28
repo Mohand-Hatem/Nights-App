@@ -19,7 +19,7 @@ function Landing() {
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6">
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight drop-shadow-lg">
-          Welcome to <span className="text-amber-500">HomeMovie</span>
+          Welcome to <span className="text-amber-500">Nights</span>
         </h1>
 
         <p className="text-gray-300 mt-6 max-w-xl text-lg">
