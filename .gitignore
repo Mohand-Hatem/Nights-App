@@ -40,3 +40,4 @@ Back/.env.*.local
 
 # Lock files
 *.pid
+config.bat

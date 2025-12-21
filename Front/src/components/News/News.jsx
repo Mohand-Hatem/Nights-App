@@ -2,6 +2,8 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import { motion } from "framer-motion";
+import { PropagateLoader } from "react-spinners";
 
 function News() {
   const { data: upcoming, isLoading } = useQuery({
@@ -16,7 +18,14 @@ function News() {
 
   if (isLoading)
     return (
-      <h1 className="text-center text-white text-3xl mt-10">Loading...</h1>
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-center items-center h-screen text-gray-400 text-lg"
+      >
+        <PropagateLoader color="#4b7de0" />
+      </motion.div>
     );
 
   return (
