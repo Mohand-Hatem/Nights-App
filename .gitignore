@@ -41,3 +41,4 @@ Back/.env.*.local
 # Lock files
 *.pid
 config.bat
+Front/vite.config.js
