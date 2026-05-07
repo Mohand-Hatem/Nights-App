@@ -51,7 +51,7 @@ export const loginUser = async (req, res) => {
     const token = generateToken(user);
     res.cookie("token", token, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: "none",
       maxAge: 24 * 60 * 60 * 1000,
     });
@@ -186,6 +186,6 @@ const generateToken = (user) => {
       gender: user.gender,
     },
     process.env.SECRET_KEY,
-    { expiresIn: "1d" }
+    { expiresIn: "1d" },
   );
 };
