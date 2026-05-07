@@ -4,12 +4,14 @@ const bookSchema = new mongoose.Schema(
   {
     title: {
       type: String,
-      unique: true,
       required: true,
+      unique: true,
+      trim: true,
     },
     author: {
       type: String,
       required: true,
+      trim: true,
     },
     price: {
       type: Number,
@@ -21,7 +23,6 @@ const bookSchema = new mongoose.Schema(
     },
     stock: {
       type: Number,
-      required: true,
       default: 0,
     },
     onSale: {
@@ -31,15 +32,19 @@ const bookSchema = new mongoose.Schema(
     category: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Category",
+      required: true,
     },
     bookImage: {
       type: String,
     },
     star: {
       type: Number,
+      min: 0,
+      max: 5,
+      default: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 export default mongoose.model("Books", bookSchema);

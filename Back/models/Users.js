@@ -22,19 +22,6 @@ const userSchema = new mongoose.Schema(
       required: function () {
         return !this.googleId;
       },
-      // validate: {
-      //   validator: function (v) {
-      //     if (!v) return true;
-      //     return validator.isStrongPassword(v, {
-      //       minLength: 5,
-      //       maxlength: 15,
-      //       minLowercase: 1,
-      //       minUppercase: 1,
-      //       minNumbers: 1,
-      //       minSymbols: 1,
-      //     });
-      //   },
-      // },
     },
     googleId: {
       type: String,
@@ -43,7 +30,7 @@ const userSchema = new mongoose.Schema(
     role: { type: String, enum: ["user", "admin"], default: "user" },
     gender: { type: String, enum: ["male", "female"], default: "male" },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 userSchema.pre("save", async function (next) {
