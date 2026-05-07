@@ -10,15 +10,16 @@ import Cart from "./routes/Cart.js";
 
 dotenv.config();
 const app = express();
+app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL, // React frontend URL
-
+    origin: `${process.env.FRONTEND_URL}`, // React frontend URL
+    methods: "GET,POST,PUT,DELETE",
     credentials: true,
-  })
+  }),
 );
-app.use(express.json());
+ConnectDB();
 
 // //routes for users
 app.use("/api/user", Users);
@@ -31,10 +32,3 @@ app.use("/api/category", Category);
 
 //routes for carts
 app.use("/api/cart", Cart);
-
-ConnectDB();
-
-app.listen(process.env.PORT_NUM || 7000, () => {
-  console.log(`Server Running On Port ${process.env.PORT_NUM}`);
-});
-export default app;
