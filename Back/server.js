@@ -14,8 +14,8 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: `${process.env.FRONTEND_URL}`, // React frontend URL
-    methods: "GET,POST,PUT,DELETE",
+    origin: [`${process.env.FRONTEND_URL}`, "http://localhost:5173"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }),
 );
@@ -33,4 +33,6 @@ app.use("/api/category", Category);
 //routes for carts
 app.use("/api/cart", Cart);
 
-export default app;
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
+});
