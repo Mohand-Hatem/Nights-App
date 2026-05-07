@@ -33,6 +33,6 @@ app.use("/api/category", Category);
 //routes for carts
 app.use("/api/cart", Cart);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
+app.listen(process.env.PORT_NUM, () => {
+  console.log(`Server is running on port ${process.env.PORT_NUM}`);
 });
