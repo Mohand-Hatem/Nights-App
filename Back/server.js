@@ -32,3 +32,5 @@ app.use("/api/category", Category);
 
 //routes for carts
 app.use("/api/cart", Cart);
+
+export default app;
