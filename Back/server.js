@@ -12,10 +12,21 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(cookieParser());
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  "http://localhost:5173",
+  "https://nights-gold.vercel.app",
+].filter(Boolean);
+
 app.use(
   cors({
-    origin: [`${process.env.FRONTEND_URL}`, "http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: (origin, callback) => {
+      // Allow requests with no origin (mobile apps, curl, Postman)
+      if (!origin) return callback(null, true);
+      if (allowedOrigins.includes(origin)) return callback(null, true);
+      return callback(new Error(`CORS blocked for origin: ${origin}`));
+    },
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   }),
 );
