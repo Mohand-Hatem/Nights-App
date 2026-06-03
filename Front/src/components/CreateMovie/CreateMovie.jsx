@@ -84,9 +84,9 @@ function CreateMovie() {
     <>
       <form
         onSubmit={formik.handleSubmit}
-        className="bg-gray-800 text-white p-8 mx-auto max-w-4xl rounded-2xl shadow-2xl border border-gray-700"
+        className="theme-card mx-auto max-w-4xl p-8"
       >
-        <h1 className="text-3xl md:text-4xl mb-4 font-extrabold font-mono bg-linear-to-r from-[#c5814b] to-[#ffb77a] bg-clip-text text-transparent tracking-wide text-center">
+        <h1 className="theme-heading mb-4 text-center font-mono text-3xl tracking-wide md:text-4xl">
           🎬 Create New Movie
         </h1>
 
@@ -94,7 +94,7 @@ function CreateMovie() {
           <div className="flex flex-col">
             <label
               htmlFor="title"
-              className="mb-2 text-sm font-semibold text-gray-300"
+              className="theme-label"
             >
               Title
             </label>
@@ -106,7 +106,7 @@ function CreateMovie() {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.title}
-              className="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+              className="theme-input"
             />
             {formik.touched.title && formik.errors.title && (
               <p className="text-red-400 text-sm mt-1">{formik.errors.title}</p>
@@ -116,7 +116,7 @@ function CreateMovie() {
           <div className="flex flex-col">
             <label
               htmlFor="author"
-              className="mb-2 text-sm font-semibold text-gray-300"
+              className="theme-label"
             >
               Author
             </label>
@@ -128,7 +128,7 @@ function CreateMovie() {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.author}
-              className="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+              className="theme-input"
             />
             {formik.touched.title && formik.errors.title && (
               <p className="text-red-400 text-sm mt-1">{formik.errors.title}</p>
@@ -138,7 +138,7 @@ function CreateMovie() {
           <div className="flex flex-col">
             <label
               htmlFor="stock"
-              className="mb-2 text-sm font-semibold text-gray-300"
+              className="theme-label"
             >
               Stock
             </label>
@@ -150,7 +150,7 @@ function CreateMovie() {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.stock}
-              className="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+              className="theme-input"
             />
             {formik.touched.title && formik.errors.title && (
               <p className="text-red-400 text-sm mt-1">{formik.errors.title}</p>
@@ -160,7 +160,7 @@ function CreateMovie() {
           <div className="flex flex-col">
             <label
               htmlFor="price"
-              className="mb-2 text-sm font-semibold text-gray-300"
+              className="theme-label"
             >
               Price ($)
             </label>
@@ -172,7 +172,7 @@ function CreateMovie() {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.price}
-              className="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+              className="theme-input"
             />
             {formik.touched.title && formik.errors.title && (
               <p className="text-red-400 text-sm mt-1">{formik.errors.title}</p>
@@ -180,17 +180,17 @@ function CreateMovie() {
           </div>
 
           <div className="flex flex-col md:col-span-1">
-            <label className="mb-2 text-sm font-semibold text-gray-300">
+            <label className="theme-label">
               Select Category
             </label>
 
             {catLoading && <p>Loading categories...</p>}
 
-            <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5 bg-gray-700 p-4 rounded-lg border border-gray-600">
+            <div className="grid grid-cols-2 gap-5 rounded-lg border border-border bg-surface-muted p-4 md:grid-cols-2 lg:grid-cols-3">
               {categories?.map((cat) => (
                 <label
                   key={cat._id}
-                  className="flex items-center gap-2 cursor-pointer text-gray-200"
+                  className="flex cursor-pointer items-center gap-2 text-foreground"
                 >
                   <input
                     type="radio"
@@ -218,7 +218,7 @@ function CreateMovie() {
             <div className="flex flex-col">
               <label
                 htmlFor="onSale"
-                className="mb-2 text-sm font-semibold text-gray-300"
+                className="theme-label"
               >
                 On Sale?
               </label>
@@ -230,7 +230,7 @@ function CreateMovie() {
                   formik.setFieldValue("onSale", e.target.value === "true")
                 }
                 value={formik.values.onSale ? "true" : "false"}
-                className="bg-gray-700 border border-gray-600 rounded-lg px-4 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all"
+                className="theme-input"
               >
                 <option value="true">true</option>
                 <option value="false">false</option>
@@ -243,7 +243,7 @@ function CreateMovie() {
             </div>
 
             <div className="flex flex-col mt-3">
-              <label className="mb-1 text-sm font-semibold text-gray-300">
+              <label className="theme-label mb-1">
                 Rating
               </label>
 
@@ -274,7 +274,7 @@ function CreateMovie() {
           <div className="flex flex-col md:col-span-2">
             <label
               htmlFor="poster"
-              className="mb-2 text-sm font-semibold text-gray-300"
+              className="theme-label"
             >
               Upload Movie Poster
             </label>
@@ -303,7 +303,7 @@ function CreateMovie() {
           <div className="flex flex-col md:col-span-2">
             <label
               htmlFor="description"
-              className="mb-2 text-sm font-semibold text-gray-300"
+              className="theme-label"
             >
               Description
             </label>
@@ -315,7 +315,7 @@ function CreateMovie() {
               onBlur={formik.handleBlur}
               onChange={formik.handleChange}
               value={formik.values.description}
-              className="bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-amber-500 transition-all resize-none"
+              className="theme-input resize-none"
             />
             {formik.touched.title && formik.errors.title && (
               <p className="text-red-400 text-sm mt-1">{formik.errors.title}</p>
@@ -326,7 +326,7 @@ function CreateMovie() {
         <div className="flex justify-center mt-10">
           <button
             type="submit"
-            className="px-8 cursor-pointer py-3 bg-linear-to-r from-[#c5814b] to-[#ffb77a] text-gray-900 font-bold rounded-lg shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300"
+            className="cursor-pointer rounded-lg bg-accent px-8 py-3 font-bold text-white shadow-md transition-all duration-300 hover:scale-105 hover:opacity-90"
           >
             Create Movie
           </button>

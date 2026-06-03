@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import oneSlider from "../../assets/images/1.jpg";
 import twoSlider from "../../assets/images/2.jpg";
 import threeSlider from "../../assets/images/3.png";
@@ -14,6 +16,7 @@ import tenlider from "../../assets/images/10.jpg";
 import elevenSlider from "../../assets/images/11.jpg";
 import twelveSlider from "../../assets/images/12.jpg";
 import thirteenSlider from "../../assets/images/13.png";
+import LazyImage from "../common/LazyImage";
 
 const sliderImages = [
   oneSlider,
@@ -87,13 +90,13 @@ function HomeSlider() {
       <Slider {...settings}>
         {sliderImages.map((img, index) => (
           <div key={index} className="relative w-full h-[30vh] sm:h-[85vh]">
-            <img
+            <LazyImage
               src={img}
               alt={`Slide ${index + 1}`}
               className="w-full h-full md:h-full object-cover object-center transition-transform duration-700 ease-in-out hover:scale-105"
             />
 
-            <div className="absolute inset-0 bg-black/60"></div>
+            <div className="absolute inset-0 bg-overlay-media"></div>
 
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
               <div className="flex justify-center items-center min-h-[120px] relative">
@@ -103,14 +106,9 @@ function HomeSlider() {
                   initial="hidden"
                   animate="visible"
                   exit="exit"
-                  className="relative px-10 py-5 rounded-3xl backdrop-blur-xs bg-white/5 border border-white/10 shadow-xl"
+                  className="relative rounded-3xl border border-white/20 bg-black/30 px-10 py-5 shadow-xl backdrop-blur-sm"
                 >
-                  <motion.h1
-                    className="text-xl md:text-6xl font-extrabold tracking-wide text-center
-          bg-linear-to-r from-[#c5814b] via-[#ffb77a] to-[#c5814b]
-          bg-clip-text text-transparent drop-shadow-[0_3px_10px_rgba(0,0,0,0.5)]
-          animate-gradient-move glow-text"
-                  >
+                  <motion.h1 className="text-center text-xl font-extrabold tracking-wide text-amber-400 md:text-6xl">
                     {text.split("").map((char, i) => (
                       <motion.span
                         key={i}
@@ -124,11 +122,7 @@ function HomeSlider() {
                   </motion.h1>
                 </motion.div>
               </div>
-              <p
-                className="text-lg md:text-2xl font-senibold 
-                bg-linear-to-r from-gray-300 via-gray-400 to-gray-200 
-                bg-clip-text text-transparent drop-shadow-md delay-300"
-              >
+              <p className="text-lg font-semibold text-gray-200 md:text-2xl">
                 where all you find
               </p>
             </div>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-hot-toast";
 import axiosInstance from "../config/axio";
+import { queryKeys } from "../lib/queryKeys";
 
 export default function useGoogleAuth(setIsAuth) {
   const [loading, setLoading] = useState(false);
@@ -40,8 +41,9 @@ export default function useGoogleAuth(setIsAuth) {
 
       toast.success("Login Successful!");
 
-      queryClient.invalidateQueries(["Count"]);
-      queryClient.invalidateQueries(["Cart"]);
+      queryClient.invalidateQueries({ queryKey: queryKeys.profile });
+      queryClient.invalidateQueries({ queryKey: queryKeys.cartCount });
+      queryClient.invalidateQueries({ queryKey: queryKeys.cart });
 
       toast.loading("Redirecting...", { duration: 2000 });
 

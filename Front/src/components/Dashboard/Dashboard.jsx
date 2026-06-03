@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FaUser, FaPlus, FaExchangeAlt, FaBars, FaTimes } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
@@ -13,19 +13,16 @@ function AdminCard({ userImage, username }) {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4 }}
-      className="bg-gray-900 p-5 flex flex-col items-center rounded-xl border-b border-gray-700 shadow-sm"
+      className="theme-card flex flex-col items-center border-b border-border p-5"
     >
       <img
         src={userImage}
         alt="Admin"
-        className="w-24 h-24 rounded-full object-cover shadow-lg border border-amber-400"
+        className="h-24 w-24 rounded-full border border-accent object-cover shadow-lg"
       />
-
-      <div className="mt-4 flex flex-col items-center bg-gray-90">
-        <p className="text-gray-300 text-sm">Admin</p>
-        <h2 className="text-lg font-bold bg-linear-to-r from-amber-500 to-orange-300 bg-clip-text text-transparent">
-          {username}
-        </h2>
+      <div className="mt-4 flex flex-col items-center">
+        <p className="theme-muted text-sm">Admin</p>
+        <h2 className="text-lg font-bold text-accent">{username}</h2>
       </div>
     </motion.div>
   );
@@ -63,18 +60,15 @@ function Dashboard() {
           key={link.to}
           onClick={() => close && close()}
           className={({ isActive }) =>
-            `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300
-             ${
-               isActive
-                 ? "bg-amber-600 text-white shadow-md"
-                 : "bg-gray-900 text-gray-300 hover:bg-amber-600 hover:text-white"
-             }`
+            `flex items-center gap-3 rounded-xl px-4 py-3 transition-all duration-300 ${
+              isActive
+                ? "bg-amber-600 text-white shadow-md"
+                : "bg-card text-muted hover:bg-amber-600 hover:text-white"
+            }`
           }
         >
           {link.icon}
-          <h2 className="text-sm font-medium text-gray-300 hover:text-white">
-            {link.label}
-          </h2>
+          <h2 className="text-sm font-medium">{link.label}</h2>
         </NavLink>
       ))}
     </ul>
@@ -84,13 +78,13 @@ function Dashboard() {
     <div className="mt-20 px-2">
       <button
         onClick={() => setMenuOpen(!menuOpen)}
-        className="md:hidden fixed top-20 left-4 z-100 bg-gray-900 p-3 rounded-xl shadow-md text-amber-400"
+        className="fixed top-20 left-4 z-100 rounded-xl bg-card p-3 text-accent shadow-md md:hidden"
       >
         {menuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
       </button>
 
-      <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-4">
-        <aside className="hidden  md:flex flex-col bg-gray-700 rounded-xl shadow-lg h-full p-2">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-[260px_1fr]">
+        <aside className="hidden h-full flex-col rounded-xl bg-surface p-2 shadow-lg md:flex">
           <AdminCard
             userImage={userImage}
             username={data?.signdUser?.username}
@@ -106,7 +100,7 @@ function Dashboard() {
                 animate={{ x: 0 }}
                 exit={{ x: "-100%" }}
                 transition={{ duration: 0.3 }}
-                className="fixed top-15 left-0 w-64 bg-gray-900 h-full shadow-2xl p-3 z-50 md:hidden"
+                className="fixed top-15 left-0 z-50 h-full w-64 bg-card p-3 shadow-2xl md:hidden"
               >
                 <AdminCard
                   userImage={userImage}
@@ -119,7 +113,7 @@ function Dashboard() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 0.5 }}
                 exit={{ opacity: 0 }}
-                className="fixed inset-0 bg-black z-30 md:hidden"
+                className="bg-overlay fixed inset-0 z-30 md:hidden"
                 onClick={() => setMenuOpen(false)}
               />
             </>
@@ -131,7 +125,7 @@ function Dashboard() {
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
-          className="bg-gray-700 rounded-xl p-6 min-h-screen shadow-lg over"
+          className="min-h-screen rounded-xl bg-surface p-6 shadow-lg"
         >
           <Outlet />
         </motion.div>

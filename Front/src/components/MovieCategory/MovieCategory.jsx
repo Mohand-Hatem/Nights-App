@@ -1,4 +1,5 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
+import LazyImage from "../common/LazyImage";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import useGetMovies from "../../Hooks/useGetMovies";
 import back from "../../assets/images/backit.jpg";
@@ -6,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function MovieCategory() {
   const [activeIndex, setActiveIndex] = useState(0);
-  const [MovieCat, setMovieCat] = useState([
+  const [MovieCat] = useState([
     "Crime",
     "Drama",
     "Fiction",
@@ -24,86 +25,87 @@ function MovieCategory() {
     .slice(0, 4);
 
   return (
-    <div className="relative mx-auto text-center my-10 w-full p-2 rounded-xl shadow-lg ">
+    <section className="relative isolate mx-auto my-10 min-h-[520px] w-full overflow-hidden rounded-xl p-4 shadow-lg md:p-6">
+      {/* Background image — z-0 inside isolate, not negative z */}
+      <img
+        src={back}
+        alt=""
+        aria-hidden
+        className="absolute inset-0 z-0 h-full w-full object-cover object-center"
+      />
+      {/* Light tint so text stays readable; image still visible */}
       <div
-        className="absolute -z-10 inset-0 bg-cover bg-center blur-sm "
-        style={{ backgroundImage: `url(${back})` }}
-      ></div>
+        className="absolute inset-0 z-0 bg-black/35 dark:bg-black/50"
+        aria-hidden
+      />
 
-      <h2
-        className="text-3xl md:text-4xl font-extrabold tracking-wide text-center
-          bg-linear-to-r from-[#f4f7de] via-sky-300 to-[#f1f6fa]
-          bg-clip-text text-transparent drop-shadow-[0_3px_10px_rgba(0,0,0,0.5)]
-          animate-gradient-move glow-text"
-      >
-        Top Movies Now By Categories
-      </h2>
+      <div className="relative z-10">
+        <h2 className="theme-heading text-center text-3xl tracking-wide drop-shadow-md md:text-4xl">
+          Top Movies Now By Categories
+        </h2>
 
-      <motion.ul
-        ref={targetref}
-        initial={{ opacity: 0, y: -20 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-        transition={{ duration: 0.5 }}
-        className="rounded-bl-3xl relative z-40 flex-wrap justify-center rounded-tr-3xl p-2 my-10 bg-gray-950/40 w-fit mx-auto flex gap-1 "
-      >
-        {MovieCat.map((category, index) => (
-          <li
-            onClick={() => setActiveIndex(index)}
-            className={` text-white px-2 basis-2/6 md:basis-1/6 rounded-bl-3xl rounded-tr-3xl md:px-5 py-2 cursor-pointer transition-all duration-300
-              ${
+        <motion.ul
+          ref={targetref}
+          initial={{ opacity: 0, y: -20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="relative mx-auto my-10 flex w-fit flex-wrap justify-center gap-1 rounded-bl-3xl rounded-tr-3xl bg-card/85 p-2 backdrop-blur-sm"
+        >
+          {MovieCat.map((category, index) => (
+            <li
+              key={category}
+              onClick={() => setActiveIndex(index)}
+              className={`cursor-pointer rounded-bl-3xl rounded-tr-3xl px-2 py-2 text-foreground transition-all duration-300 basis-2/6 md:basis-1/6 md:px-5 ${
                 activeIndex === index
-                  ? "bg-sky-500 "
-                  : "bg-gray-950 hover:bg-sky-500"
+                  ? "theme-tab-active"
+                  : "theme-tab-inactive"
               }`}
-          >
-            {category}
-          </li>
-        ))}
-      </motion.ul>
+            >
+              {category}
+            </li>
+          ))}
+        </motion.ul>
 
-      <div className="flex overflow-hidden md:justify-center w-fit gap-2 lg:gap-3.5 flex-wrap p-2 mx-auto bg-gray-300/10 border-gray-400/10 border-2 rounded-lg">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeIndex}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.92 }}
-            transition={{
-              type: "spring",
-              stiffness: 100,
-              damping: 12,
-            }}
-            className="flex flex-wrap gap-2 md:justify-center"
-          >
-            {filteredMovies?.length > 0 ? (
-              filteredMovies.map((movie) => (
-                <div
-                  key={movie._id}
-                  onClick={() => NaviCard(`/book/${movie._id}`)}
-                  className="relative card z-20 basis-[48%] sm:basis-[24%]  lg:basis-auto bg-gray-800 rounded-lg overflow-hidden shadow-lg cursor-pointer hover:scale-102 hover:shadow-2xl transition-transform duration-500 w-65"
-                >
-                  <img
-                    src={movie.bookImage}
-                    alt={movie.title}
-                    className="relative phon z-20 w-full h-45 sm:h-60 md:h-95 object-cover"
-                  />
-                  <div className="absolute top-2 right-2 bg-yellow-400 text-black text-xs font-semibold px-2 py-1 rounded-full z-50">
-                    {movie.star} ★
+        <div className="mx-auto flex w-fit flex-wrap gap-2 overflow-hidden rounded-lg border-2 border-border/60 bg-card/70 p-2 backdrop-blur-sm md:justify-center lg:gap-3.5">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ type: "spring", stiffness: 100, damping: 12 }}
+              className="flex flex-wrap gap-2 md:justify-center"
+            >
+              {filteredMovies?.length > 0 ? (
+                filteredMovies.map((movie) => (
+                  <div
+                    key={movie._id}
+                    onClick={() => NaviCard(`/book/${movie._id}`)}
+                    className="card relative w-65 basis-[48%] cursor-pointer overflow-hidden rounded-lg bg-card shadow-lg transition-transform duration-500 hover:scale-102 hover:shadow-2xl sm:basis-[24%] lg:basis-auto"
+                  >
+                    <LazyImage
+                      src={movie.bookImage}
+                      alt={movie.title}
+                      className="phon relative h-45 w-full object-cover sm:h-60 md:h-95"
+                    />
+                    <div className="absolute right-2 top-2 z-50 rounded-full bg-yellow-400 px-2 py-1 text-xs font-semibold text-black">
+                      {movie.star} ★
+                    </div>
+                    <h3 className="cardhover absolute bottom-0 left-0 z-10 line-clamp-1 w-full bg-black/50 px-2 py-2 text-sm font-semibold text-white md:text-xl">
+                      {movie.title}
+                    </h3>
                   </div>
-                  <h3 className="cardhover text-sm line-clamp-1 absolute left-0 bottom-0 z-10 w-full px-2 text-gray-300 py-2 md:text-xl font-semibold">
-                    {movie.title}
-                  </h3>
-                </div>
-              ))
-            ) : (
-              <h3 className="text-xl text-white font-semibold">
-                No movies available.
-              </h3>
-            )}
-          </motion.div>
-        </AnimatePresence>
+                ))
+              ) : (
+                <h3 className="rounded-lg bg-card/90 px-4 py-2 text-xl font-semibold text-foreground">
+                  No movies available.
+                </h3>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 

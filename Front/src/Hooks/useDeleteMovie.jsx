@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import axiosInstance from "../config/axio";
 import toast from "react-hot-toast";
+import { queryKeys } from "../lib/queryKeys";
 
 function useDeleteMovie() {
   const queryClient = useQueryClient();
@@ -9,16 +9,15 @@ function useDeleteMovie() {
     mutationKey: ["deletemovie"],
     mutationFn: async (id) => {
       const res = await axiosInstance.delete(`book/${id}`);
-      console.log(res?.data);
+      return res?.data;
     },
-    onSuccess: (data) => {
-      toast.success("Product Deleted From Your Cart");
-      queryClient.invalidateQueries(["book"]);
-      queryClient.invalidateQueries(["Cart"]);
+    onSuccess: () => {
+      toast.success("Movie deleted successfully");
+      queryClient.invalidateQueries({ queryKey: queryKeys.books });
+      queryClient.invalidateQueries({ queryKey: queryKeys.cart });
     },
-    onError: (error) => {
-      console.error("Error Deleting Movie:", error);
-      toast.error("Something went wrong while Deleting Movie");
+    onError: () => {
+      toast.error("Something went wrong while deleting the movie");
     },
   });
 

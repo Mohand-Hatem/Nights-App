@@ -9,9 +9,9 @@
     scrollbar-width: thin;
   }
 }
-@supports (scrollbar-color: #c5814b #1f1f1f) {
+@supports (scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track)) {
   .modify {
-    scrollbar-color: #c5814b #1f1f1f;
+    scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
   }
 }
 
@@ -20,12 +20,8 @@
 }
 
 .modify::-webkit-scrollbar-track {
-  background: #1f1f1f;
+  background: var(--scrollbar-track);
   border-radius: 10px;
-}
-body {
-  background-color: #1f2937;
-  overflow-x: hidden;
 }
 
 .parent {
@@ -41,28 +37,27 @@ body {
 
 .swiper-pagination-bullet {
   padding: 5px;
-  background: #fff;
+  background: var(--foreground);
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.4;
   transition: all 0.3s ease;
-  border: 1px solid #fff;
+  border: 1px solid var(--border);
 }
 
 .swiper-pagination-bullet-active {
   width: 28px;
-  height: 60px;
+  height: 12px;
   border-radius: 20px;
-  background: linear-gradient(90deg, #c5814b, #ffb77a);
+  background: var(--accent);
   opacity: 1;
-  box-shadow: 0 0 10px #ffb77a;
   border: none;
-  transform: scale(1.15);
+  transform: scale(1.1);
 }
 
 .swiper-pagination-bullet:hover {
-  transform: scale(1.3);
-  opacity: 1;
-  background: #ffffff60;
+  transform: scale(1.2);
+  opacity: 0.8;
+  background: var(--accent);
 }
 
 .active {
@@ -138,24 +133,25 @@ body {
   list-style: none;
   padding: 8px 14px;
   border-radius: 8px;
-  background: #070411;
-  color: #fff;
+  background: var(--pagination-bg);
+  color: var(--pagination-text);
   cursor: pointer;
   font-size: 14px;
   transition: all 0.25s ease;
-  border: 1px solid #333;
+  border: 1px solid var(--pagination-border);
 }
 
 .page-item a:hover {
-  background: #3b71ca;
-  border-color: #3b71ca;
+  background: var(--pagination-hover);
+  border-color: var(--pagination-hover);
+  color: #fff;
   transform: translateY(-3px);
   box-shadow: 0px 4px 12px rgba(59, 113, 202, 0.4);
 }
 
 .actives a {
-  background: #3b71ca !important;
-  border-color: #3b71ca !important;
+  background: var(--pagination-hover) !important;
+  border-color: var(--pagination-hover) !important;
   color: white;
   transform: translateY(-3px);
   box-shadow: 0px 4px 12px rgba(59, 113, 202, 0.4);

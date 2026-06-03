@@ -1,61 +1,62 @@
-import { useEffect, useState } from "react";
+import { lazy, Suspense } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import "./App.css";
+import { queryClient } from "./lib/queryClient";
 import Layout from "./components/Layout/Layout";
-import Home from "./components/Home/Home";
-import Login from "./components/Login/Login";
-import Dashboard from "./components/Dashboard/Dashboard";
-import Register from "./components/Register/Register";
-import Cart from "./components/Cart/Cart";
-import ProtectedBox from "./components/ProtectedBox/ProtectedBox";
 import Conex from "./Context/Conex";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import AdminProfile from "./components/AdminProfile/AdminProfile";
-import CreateMovie from "./components/CreateMovie/CreateMovie";
-import UpdateMovie from "./components/UpdateMovie/UpdateMovie";
-import GeneralAdmin from "./components/GeneralAdmin/GeneralAdmin";
-import DeleteMovie from "./components/DeleteMovie/DeleteMovie";
-import Landing from "./components/Landing/Landing";
-import MovieInfo from "./components/MovieInfo/MovieInfo";
-import ChecoutSuccess from "./components/ChecoutSuccess/ChecoutSuccess";
-import ContactUs from "./components/ContactUs/ContactUs";
-import News from "./components/News/News";
-import Notfound from "./components/Notfound/Notfound";
+import { ThemeProvider } from "./Context/ThemeContext";
+import PageLoader from "./components/common/PageLoader";
+import ProtectedBox from "./components/ProtectedBox/ProtectedBox";
 
-const queryClient = new QueryClient();
+const Landing = lazy(() => import("./components/Landing/Landing"));
+const Login = lazy(() => import("./components/Login/Login"));
+const Register = lazy(() => import("./components/Register/Register"));
+const Home = lazy(() => import("./components/Home/Home"));
+const Cart = lazy(() => import("./components/Cart/Cart"));
+const MovieInfo = lazy(() => import("./components/MovieInfo/MovieInfo"));
+const ChecoutSuccess = lazy(() => import("./components/ChecoutSuccess/ChecoutSuccess"));
+const ContactUs = lazy(() => import("./components/ContactUs/ContactUs"));
+const News = lazy(() => import("./components/News/News"));
+const Notfound = lazy(() => import("./components/Notfound/Notfound"));
+const Dashboard = lazy(() => import("./components/Dashboard/Dashboard"));
+const GeneralAdmin = lazy(() => import("./components/GeneralAdmin/GeneralAdmin"));
+const AdminProfile = lazy(() => import("./components/AdminProfile/AdminProfile"));
+const CreateMovie = lazy(() => import("./components/CreateMovie/CreateMovie"));
+const UpdateMovie = lazy(() => import("./components/UpdateMovie/UpdateMovie"));
+const DeleteMovie = lazy(() => import("./components/DeleteMovie/DeleteMovie"));
 
-let routes = createBrowserRouter([
+function withSuspense(element) {
+  return <Suspense fallback={<PageLoader />}>{element}</Suspense>;
+}
+
+const routes = createBrowserRouter([
   {
     path: "",
     element: <Layout />,
     children: [
       {
         index: true,
-        element: <Landing />,
+        element: withSuspense(<Landing />),
       },
       {
         path: "*",
-        element: <Notfound />,
+        element: withSuspense(<Notfound />),
       },
       {
         path: "contact",
-        element: <ContactUs />,
+        element: withSuspense(<ContactUs />),
       },
       {
         path: "news",
-        element: <News />,
+        element: withSuspense(<News />),
       },
       {
         path: "home",
         element: (
           <ProtectedBox>
-            <Home />
+            {withSuspense(<Home />)}
           </ProtectedBox>
         ),
       },
@@ -63,7 +64,7 @@ let routes = createBrowserRouter([
         path: "cart",
         element: (
           <ProtectedBox>
-            <Cart />
+            {withSuspense(<Cart />)}
           </ProtectedBox>
         ),
       },
@@ -71,34 +72,33 @@ let routes = createBrowserRouter([
         path: "checout-success",
         element: (
           <ProtectedBox>
-            <ChecoutSuccess />
+            {withSuspense(<ChecoutSuccess />)}
           </ProtectedBox>
         ),
       },
-      { path: "register", element: <Register /> },
-      { path: "login", element: <Login /> },
+      { path: "register", element: withSuspense(<Register />) },
+      { path: "login", element: withSuspense(<Login />) },
       {
         path: "book/:id",
         element: (
           <ProtectedBox>
-            <MovieInfo />
+            {withSuspense(<MovieInfo />)}
           </ProtectedBox>
         ),
       },
-
       {
         path: "admin",
         element: (
           <ProtectedBox adminOnly>
-            <Dashboard />
+            {withSuspense(<Dashboard />)}
           </ProtectedBox>
         ),
         children: [
-          { index: true, element: <GeneralAdmin /> },
-          { path: "profile", element: <AdminProfile /> },
-          { path: "create", element: <CreateMovie /> },
-          { path: "update", element: <UpdateMovie /> },
-          { path: "delete", element: <DeleteMovie /> },
+          { index: true, element: withSuspense(<GeneralAdmin />) },
+          { path: "profile", element: withSuspense(<AdminProfile />) },
+          { path: "create", element: withSuspense(<CreateMovie />) },
+          { path: "update", element: withSuspense(<UpdateMovie />) },
+          { path: "delete", element: withSuspense(<DeleteMovie />) },
         ],
       },
     ],
@@ -106,14 +106,14 @@ let routes = createBrowserRouter([
 ]);
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        <Conex>
-          <RouterProvider router={routes}></RouterProvider>
-        </Conex>
+        <ThemeProvider>
+          <Conex>
+            <RouterProvider router={routes} />
+          </Conex>
+        </ThemeProvider>
       </QueryClientProvider>
 
       <Toaster
@@ -124,7 +124,6 @@ function App() {
         containerStyle={{}}
         toasterId="default"
         toastOptions={{
-          // Define default options
           className: "",
           duration: 5000,
           removeDelay: 1000,
@@ -132,8 +131,6 @@ function App() {
             background: "#363636",
             color: "#fff",
           },
-
-          // Default options for specific types
           success: {
             duration: 3000,
             iconTheme: {

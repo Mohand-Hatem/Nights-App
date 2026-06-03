@@ -1,5 +1,143 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Root theme tokens (light = :root, dark = .dark on html) ─── */
+:root {
+  --background: #f1f5f9;
+  --foreground: #0f172a;
+  --surface: #ffffff;
+  --surface-muted: #e2e8f0;
+  --muted: #64748b;
+  --border: #cbd5e1;
+  --accent: #d97706;
+  --card: #ffffff;
+  --navbar: #ffffff;
+  --footer: #f8fafc;
+  --input: #ffffff;
+  --section: #e2e8f0;
+  --highlight: #f8fafc;
+  --overlay: rgba(15, 23, 42, 0.55);
+  --overlay-media: rgba(0, 0, 0, 0.5);
+  --pagination-bg: #ffffff;
+  --pagination-text: #0f172a;
+  --pagination-border: #cbd5e1;
+  --pagination-hover: #3b71ca;
+  --scrollbar-track: #e2e8f0;
+  --scrollbar-thumb: #d97706;
+}
+
+.dark {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --surface: #1e293b;
+  --surface-muted: #334155;
+  --muted: #94a3b8;
+  --border: #475569;
+  --accent: #fbbf24;
+  --card: #1e293b;
+  --navbar: #111827;
+  --footer: #111827;
+  --input: #334155;
+  --section: #0f172a;
+  --highlight: #1e293b;
+  --overlay: rgba(15, 23, 42, 0.75);
+  --overlay-media: rgba(0, 0, 0, 0.65);
+  --pagination-bg: #1e293b;
+  --pagination-text: #f1f5f9;
+  --pagination-border: #475569;
+  --pagination-hover: #3b71ca;
+  --scrollbar-track: #1f2937;
+  --scrollbar-thumb: #fbbf24;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-card: var(--card);
+  --color-navbar: var(--navbar);
+  --color-footer: var(--footer);
+  --color-input: var(--input);
+  --color-section: var(--section);
+  --color-highlight: var(--highlight);
+  --color-overlay: var(--overlay);
+}
+
+.bg-overlay {
+  background-color: var(--overlay);
+}
+
+.bg-overlay-media {
+  background-color: var(--overlay-media);
+}
+
+@layer base {
+  body {
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+}
+
+@layer components {
+  .theme-heading {
+    @apply font-extrabold text-accent;
+  }
+
+  .theme-card {
+    @apply rounded-2xl border border-border bg-card text-foreground shadow-lg;
+  }
+
+  .theme-section {
+    @apply bg-section text-foreground;
+  }
+
+  .theme-form {
+    @apply mx-auto mt-30 max-w-lg rounded-lg border border-border bg-card p-5 text-foreground shadow-lg backdrop-blur-lg;
+  }
+
+  .theme-input {
+    @apply w-full rounded-lg border border-border bg-input px-4 py-2.5 text-sm text-foreground focus:border-sky-500 focus:ring-2 focus:ring-sky-500;
+  }
+
+  .theme-label {
+    @apply mb-2 block text-sm font-medium text-foreground;
+  }
+
+  .theme-muted {
+    @apply text-muted;
+  }
+
+  .theme-badge {
+    @apply rounded-full border border-border bg-surface-muted px-3 py-1 text-sm text-foreground;
+  }
+
+  .theme-tab-active {
+    @apply bg-sky-600 text-white;
+  }
+
+  .theme-tab-inactive {
+    @apply bg-surface text-foreground hover:bg-sky-600 hover:text-white;
+  }
+
+  .theme-news-card {
+    @apply cursor-grabbing rounded-3xl border border-border bg-card p-5 text-foreground shadow-lg transition-all duration-500 hover:border-accent hover:shadow-xl;
+  }
+
+  .theme-table-head {
+    @apply bg-surface-muted text-xs uppercase text-muted;
+  }
+
+  .theme-table-row {
+    @apply border-b border-border transition-colors hover:bg-highlight;
+  }
+}
+
 @keyframes gradientMove {
   0% {
     background-position: 0% 50%;

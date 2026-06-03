@@ -3,10 +3,12 @@ import axiosInstance from "../config/axio";
 import adminImg from "../assets/images/one.jpg";
 import adminImge from "../assets/images/two.jpg";
 import femaleImg from "../assets/images/female.jpg";
+import { cacheTimes } from "../lib/queryClient";
+import { queryKeys } from "../lib/queryKeys";
 
 export default function useProfile() {
   return useQuery({
-    queryKey: ["profile"],
+    queryKey: queryKeys.profile,
     queryFn: async () => {
       const res = await axiosInstance.get("/user/me");
       if (res?.data?.message === "success") {
@@ -29,11 +31,11 @@ export default function useProfile() {
           gender: user.gender,
           userImage,
         };
-      } else {
-        throw new Error("Unauthorized");
       }
+      throw new Error("Unauthorized");
     },
-    staleTime: 0,
-    cacheTime: 0,
+    retry: false,
+    refetchOnWindowFocus: true,
+    ...cacheTimes.profile,
   });
 }

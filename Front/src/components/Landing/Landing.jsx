@@ -11,11 +11,12 @@ function Landing() {
         loop
         muted
         playsInline
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-cover"
         src={landVid}
       />
 
-      <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-black/80 backdrop-blur-[2px]" />
+      <div className="absolute inset-0 bg-overlay-media backdrop-blur-[2px]" />
 
       <div className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6">
         <h1 className="text-5xl md:text-7xl font-extrabold leading-tight drop-shadow-lg">

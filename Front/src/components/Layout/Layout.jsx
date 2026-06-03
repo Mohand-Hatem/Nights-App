@@ -1,17 +1,15 @@
-import { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 import Footer from "../Footer/Footer";
 import Scrollbase from "../Scrollbase/Scrollbase";
 
 function Layout() {
-  const [count, setCount] = useState(null);
   return (
     <>
       <Navbar />
-      <div className="parent">
+      <div className="parent min-h-screen bg-background text-foreground transition-colors duration-200">
         <Scrollbase />
-        <Outlet></Outlet>
+        <Outlet />
       </div>
       <Footer />
     </>

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   FaFacebookF,
   FaInstagram,
@@ -9,72 +8,76 @@ import { Link } from "react-router-dom";
 
 function Footer() {
   return (
-    <footer className="bg-gray-900 relative z-50 text-gray-300 pt-12 pb-6 px-6 md:px-16 mt-15">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 border-b border-gray-700 pb-10">
+    <footer className="relative z-50 mt-15 border-t border-border bg-footer px-6 pt-12 pb-6 text-muted md:px-16">
+      <div className="grid grid-cols-1 gap-10 border-b border-border pb-10 md:grid-cols-4">
         <div>
-          <h2 className="text-2xl font-bold text-white mb-4">🎬 Nights</h2>
-          <p className="text-gray-400 text-sm leading-relaxed">
+          <h2 className="mb-4 text-2xl font-bold text-foreground">🎬 Nights</h2>
+          <p className="text-sm leading-relaxed">
             Discover, watch, and enjoy your favorite movies — all in one place.
             Your home for entertainment and stories that move you.
           </p>
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li className="hover:text-white transition">
-              <Link to={"/home"}>Home</Link>
+          <h3 className="mb-4 text-xl font-semibold text-foreground">Quick Links</h3>
+          <ul className="space-y-2 text-sm">
+            <li className="transition hover:text-accent">
+              <Link to="/home">Home</Link>
             </li>
-            <li className="hover:text-white transition">
-              <Link to={"/news"}>News</Link>
+            <li className="transition hover:text-accent">
+              <Link to="/news">News</Link>
             </li>
-            <li className="hover:text-white transition">
-              <Link to={""}>Landing</Link>
+            <li className="transition hover:text-accent">
+              <Link to="/">Landing</Link>
             </li>
-            <li className="hover:text-white transition">
-              <Link to={"/contact"}>Contact</Link>
+            <li className="transition hover:text-accent">
+              <Link to="/contact">Contact</Link>
             </li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Support</h3>
-          <ul className="space-y-2 text-gray-400 text-sm">
-            <li className="hover:text-white transition">Help Center</li>
-            <li className="hover:text-white transition">Terms of Service</li>
-            <li className="hover:text-white transition">Privacy Policy</li>
-            <li className="hover:text-white transition">Report a Problem</li>
+          <h3 className="mb-4 text-xl font-semibold text-foreground">Support</h3>
+          <ul className="space-y-2 text-sm">
+            <li className="transition hover:text-accent">Help Center</li>
+            <li className="transition hover:text-accent">Terms of Service</li>
+            <li className="transition hover:text-accent">Privacy Policy</li>
+            <li className="transition hover:text-accent">Report a Problem</li>
           </ul>
         </div>
 
         <div>
-          <h3 className="text-xl font-semibold text-white mb-4">Follow Us</h3>
+          <h3 className="mb-4 text-xl font-semibold text-foreground">Follow Us</h3>
           <div className="flex space-x-4">
             <a
               href="https://www.facebook.com/mohaned.hatem.39/"
               target="_blank"
-              className="p-3 bg-gray-800 rounded-full hover:bg-pink-600 transition"
+              rel="noreferrer"
+              className="rounded-full bg-surface-muted p-3 transition hover:bg-pink-600 hover:text-white"
             >
               <FaFacebookF />
             </a>
             <a
               href="https://www.linkedin.com/in/mohand-hatem-73995a262/"
               target="_blank"
-              className="p-3 bg-gray-800 rounded-full hover:bg-pink-600 transition"
+              rel="noreferrer"
+              className="rounded-full bg-surface-muted p-3 transition hover:bg-pink-600 hover:text-white"
             >
               <FaLinkedin />
             </a>
             <a
               href="https://www.instagram.com/mohandhatem1?igsh=dzVxMHZjOThsd3dx"
               target="_blank"
-              className="p-3 bg-gray-800 rounded-full hover:bg-pink-600 transition"
+              rel="noreferrer"
+              className="rounded-full bg-surface-muted p-3 transition hover:bg-pink-600 hover:text-white"
             >
               <FaInstagram />
             </a>
             <a
               href="https://api.whatsapp.com/send?phone=201063505368"
               target="_blank"
-              className="p-3 bg-gray-800 rounded-full hover:bg-pink-600 transition"
+              rel="noreferrer"
+              className="rounded-full bg-surface-muted p-3 transition hover:bg-pink-600 hover:text-white"
             >
               <FaWhatsapp />
             </a>
@@ -82,18 +85,10 @@ function Footer() {
         </div>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-between items-center mt-6 text-sm text-gray-500">
-        <p>
-          © {new Date().getFullYear()} The Home Movies. All rights reserved.
-        </p>
+      <div className="mt-6 flex flex-col items-center justify-between text-sm md:flex-row">
+        <p>© {new Date().getFullYear()} The Home Movies. All rights reserved.</p>
         <p className="mt-3 md:mt-0">
-          Designed by{" "}
-          <span
-            className="bg-linear-to-r from-[#c5814b] to-[#ffb77a]
-               bg-clip-text text-transparent drop-shadow-lg animate-fadeIn font-bold"
-          >
-            Mohand Hatem
-          </span>
+          Designed by <span className="font-bold text-accent">Mohand Hatem</span>
         </p>
       </div>
     </footer>

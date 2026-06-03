@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import React from "react";
 import axiosInstance from "../config/axio";
 import toast from "react-hot-toast";
+import { queryKeys } from "../lib/queryKeys";
 
 function useDeleteCart() {
   const queryClient = useQueryClient();
@@ -13,11 +13,11 @@ function useDeleteCart() {
     },
     onSuccess: () => {
       toast.success("Product Deleted From Your Cart");
-      queryClient.invalidateQueries(["Cart"]);
+      queryClient.invalidateQueries({ queryKey: queryKeys.cart });
+      queryClient.invalidateQueries({ queryKey: queryKeys.cartCount });
     },
-    onError: (error) => {
+    onError: () => {
       toast.error("Error Deleting From Your Cart");
-      console.log(error);
     },
   });
 

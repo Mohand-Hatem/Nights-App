@@ -7,10 +7,12 @@ import * as Yup from "yup";
 import { GoogleLogin } from "@react-oauth/google";
 import { AuthContext } from "../../Context/Conex";
 import useGoogleAuth from "../../Hooks/useGoogleAuth";
+import { useTheme } from "../../Context/ThemeContext";
 
 function Register() {
   const { setIsAuth } = useContext(AuthContext);
-  const { loading, error, loginWithGoogle } = useGoogleAuth(setIsAuth);
+  const { loginWithGoogle } = useGoogleAuth(setIsAuth);
+  const { isDark } = useTheme();
   const logNav = useNavigate();
 
   async function handleSubmit(registerUser) {
@@ -55,14 +57,14 @@ function Register() {
 
   return (
     <>
-      <div className="register max-w-lg mx-auto mt-30 backdrop-blur-lg bg-opacity-80 rounded-lg shadow-lg p-5 bg-gray-900 text-white">
-        <div className="anime flex justify-between items-baseline ">
-          <h2 className="text-2xl font-bold pb-5">Create Your Account</h2>
+      <div className="theme-form register">
+        <div className="anime flex items-baseline justify-between">
+          <h2 className="theme-heading pb-5 text-2xl">Create Your Account</h2>
           <div className="loader"></div>
         </div>
         <form onSubmit={formik.handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="name" className="block mb-2 text-sm font-medium">
+            <label htmlFor="name" className="theme-label">
               Your name
             </label>
             <input
@@ -72,7 +74,7 @@ function Register() {
               onBlur={formik.handleBlur}
               name="username"
               id="name"
-              className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+              className="theme-input"
               placeholder="Andrew Jackson"
               required
             />
@@ -88,7 +90,7 @@ function Register() {
             ) : null}
           </div>
           <div className="mb-4">
-            <label htmlFor="email" className="block mb-2 text-sm font-medium">
+            <label htmlFor="email" className="theme-label">
               Your email
             </label>
             <input
@@ -98,7 +100,7 @@ function Register() {
               onBlur={formik.handleBlur}
               name="email"
               id="email"
-              className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+              className="theme-input"
               placeholder="andrew@mail.com"
               required
             />
@@ -116,7 +118,7 @@ function Register() {
           <div className="mb-4">
             <label
               htmlFor="password"
-              className="block mb-2 text-sm font-medium"
+              className="theme-label"
             >
               Your password
             </label>
@@ -127,7 +129,7 @@ function Register() {
               name="password"
               type="password"
               id="password"
-              className="bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 w-full py-2.5 px-4"
+              className="theme-input"
               placeholder="*********"
               required
             />
@@ -156,15 +158,15 @@ function Register() {
               <p>Already have an account?</p>
               <p
                 onClick={() => logNav("/login")}
-                className="underline cursor-pointer ml-1"
+                className="ml-1 cursor-pointer text-accent underline"
               >
                 Sign in
               </p>
             </div>
           </div>
-          <div className="google w-fit mx-auto mt-3">
+          <div className="google mx-auto mt-3 w-fit">
             <GoogleLogin
-              theme="filled_blue"
+              theme={isDark ? "filled_black" : "outline"}
               size="large"
               logo_alignment="left"
               shape="pill"

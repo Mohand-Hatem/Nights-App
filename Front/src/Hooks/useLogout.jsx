@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../config/axio";
 import toast from "react-hot-toast";
+import { queryKeys } from "../lib/queryKeys";
 
 function useLogout() {
   const homeNavi = useNavigate();
@@ -17,10 +18,10 @@ function useLogout() {
       toast.success("User Logged Out");
       toast.loading("Redirecting...", { duration: 1000 });
 
-      queryClient.setQueryData(["profile"], null);
-      queryClient.removeQueries(["profile"]);
-      queryClient.removeQueries(["Cart"]);
-      queryClient.removeQueries(["Count"]);
+      queryClient.setQueryData(queryKeys.profile, null);
+      queryClient.removeQueries({ queryKey: queryKeys.profile });
+      queryClient.removeQueries({ queryKey: queryKeys.cart });
+      queryClient.removeQueries({ queryKey: queryKeys.cartCount });
 
       setTimeout(() => {
         homeNavi("/");

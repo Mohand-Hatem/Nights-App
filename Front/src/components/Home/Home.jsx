@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, useInView } from "framer-motion";
 import ReactPaginate from "react-paginate";
@@ -6,9 +6,12 @@ import { FaShoppingCart, FaFireAlt } from "react-icons/fa";
 import { PropagateLoader } from "react-spinners";
 import useGetMovies from "../../Hooks/useGetMovies";
 import useAddCart from "../../Hooks/useAddCart";
-import Homeslider from "../Homeslider/Homeslider";
-import Tvs from "../Tvs/Tvs";
-import MovieCategory from "../MovieCategory/MovieCategory";
+import LazyImage from "../common/LazyImage";
+import PageLoader from "../common/PageLoader";
+
+const Homeslider = lazy(() => import("../Homeslider/Homeslider"));
+const Tvs = lazy(() => import("../Tvs/Tvs"));
+const MovieCategory = lazy(() => import("../MovieCategory/MovieCategory"));
 
 function Home() {
   const { data: Movies, isLoading, isError } = useGetMovies();
@@ -23,7 +26,7 @@ function Home() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
+      <div className="flex h-screen items-center justify-center">
         <PropagateLoader color="#4b7de0" />
       </div>
     );
@@ -31,7 +34,7 @@ function Home() {
 
   if (isError) {
     return (
-      <div className="flex justify-center items-center h-screen text-red-500">
+      <div className="flex h-screen items-center justify-center text-red-500">
         Error loading movies.
       </div>
     );
@@ -48,19 +51,14 @@ function Home() {
 
   return (
     <>
-      <Homeslider />
-      <Tvs />
-      <MovieCategory />
+      <Suspense fallback={<PageLoader />}>
+        <Homeslider />
+        <Tvs />
+        <MovieCategory />
+      </Suspense>
 
-      <div
-        className="relative flex items-end w-fit text-lg mt-10 -mb-3 ml-5 font-extrabold text-amber-400 leading-tight 
-          px-8 py-3 rounded-3xl bg-linear-to-r from-black/50 via-black/30 to-black/50
-          backdrop-blur-md drop-shadow-2xl text-center
-          border border-amber-400/30
-          hover:scale-105 hover:shadow-amber-500/50 transition-all duration-500 ease-in-out
-          animate-fade-in"
-      >
-        <FaFireAlt className="inline mr-2 animate-pulse" />
+      <div className="theme-badge relative -mb-3 ml-5 mt-10 flex w-fit items-end px-8 py-3 text-lg font-extrabold text-accent animate-fade-in">
+        <FaFireAlt className="mr-2 inline animate-pulse" />
         <h1>Trending Now</h1>
       </div>
 
@@ -69,50 +67,50 @@ function Home() {
         initial={{ x: -100, opacity: 0 }}
         animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
         transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 p-7"
+        className="grid grid-cols-1 gap-8 p-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
       >
         {currentItems.map((movie) => (
           <div
             key={movie._id}
-            className="group cursor-pointer bg-gray-900/70 border border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-amber-500/30 transition-all duration-300 transform hover:-translate-y-2 hover:scale-[1.03] backdrop-blur-sm"
+            className="group theme-card cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-amber-500/20"
           >
             <div
               onClick={() => naviCard(`/book/${movie._id}`)}
-              className="relative w-full h-80 overflow-hidden"
+              className="relative h-80 w-full overflow-hidden"
             >
-              <img
+              <LazyImage
                 src={movie.bookImage}
                 alt={movie.title}
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
               {movie.onSale && (
-                <span className="absolute top-3 left-3 bg-purple-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
+                <span className="absolute left-3 top-3 rounded-full bg-purple-600 px-3 py-1 text-xs font-semibold text-white">
                   On Sale
                 </span>
               )}
             </div>
 
-            <div className="p-5 flex flex-col justify-between h-56">
+            <div className="flex h-56 flex-col justify-between p-5">
               <div>
-                <h1 className="text-xl font-semibold text-amber-300 mb-1 line-clamp-1">
+                <h1 className="mb-1 line-clamp-1 text-xl font-semibold text-accent">
                   {movie.title}
                 </h1>
-                <p className="text-sm text-gray-400 mb-2">by {movie.author}</p>
-                <p className="text-gray-300 text-sm line-clamp-2">
+                <p className="theme-muted mb-2 text-sm">by {movie.author}</p>
+                <p className="line-clamp-2 text-sm text-foreground">
                   {movie.description}
                 </p>
-                <p className="text-gray-500 text-sm line-clamp-2 mt-3">
+                <p className="theme-muted mt-3 line-clamp-2 text-sm">
                   Available {movie.stock}
                 </p>
               </div>
 
-              <div className="flex items-center justify-between mt-3">
-                <p className="text-sm md:text-lg font-bold text-green-400">
+              <div className="mt-3 flex items-center justify-between">
+                <p className="text-sm font-bold text-green-600 md:text-lg">
                   {movie.price} EGP
                 </p>
                 <button
                   onClick={() => addToCart.mutate({ bookId: movie._id })}
-                  className="flex z-20 cursor-pointer items-center gap-2 bg-purple-600 hover:bg-purple-700 text-white px-3 py-2 rounded-lg text-sm transition-all duration-200"
+                  className="z-20 flex cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-3 py-2 text-sm text-white transition-all duration-200 hover:bg-purple-700"
                 >
                   <FaShoppingCart /> Add Cart
                 </button>
