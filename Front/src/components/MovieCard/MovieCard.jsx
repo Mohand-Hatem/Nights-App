@@ -1,6 +1,6 @@
-import { useFormik } from "formik";
-import useUpdateMovie from "../../Hooks/useUpdateMovie";
-import { PropagateLoader } from "react-spinners";
+import { useFormik } from 'formik';
+import useUpdateMovie from '../../Hooks/useUpdateMovie';
+import { PropagateLoader } from 'react-spinners';
 
 function MovieCard({ movie }) {
   const updateMovie = useUpdateMovie();

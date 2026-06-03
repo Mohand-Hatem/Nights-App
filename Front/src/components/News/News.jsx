@@ -1,12 +1,12 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import { motion } from "framer-motion";
-import { PropagateLoader } from "react-spinners";
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-import useNews from "../../Hooks/useNews";
-import LazyImage from "../common/LazyImage";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import { motion } from 'framer-motion';
+import { PropagateLoader } from 'react-spinners';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import useNews from '../../Hooks/useNews';
+import LazyImage from '../common/LazyImage';
 
 function News() {
   const { data: upcoming, isLoading } = useNews();

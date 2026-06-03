@@ -1,8 +1,8 @@
-import { useState } from "react";
-import useGetMovies from "../../Hooks/useGetMovies";
-import useDeleteMovie from "../../Hooks/useDeleteMovie";
-import { PropagateLoader } from "react-spinners";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import useGetMovies from '../../Hooks/useGetMovies';
+import useDeleteMovie from '../../Hooks/useDeleteMovie';
+import { PropagateLoader } from 'react-spinners';
+import { motion } from 'framer-motion';
 
 function DeleteMovie() {
   const [currentPage, setCurrentPage] = useState(1);

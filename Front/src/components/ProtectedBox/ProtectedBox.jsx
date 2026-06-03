@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { Navigate } from "react-router-dom";
-import { AuthContext } from "../../Context/Conex";
-import PageLoader from "../common/PageLoader";
+import { useContext } from 'react';
+import { Navigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/Conex';
+import PageLoader from '../common/PageLoader';
 
 function ProtectedBox({ children, adminOnly = false }) {
   const { isAuth, isAdmin, isLoading } = useContext(AuthContext);

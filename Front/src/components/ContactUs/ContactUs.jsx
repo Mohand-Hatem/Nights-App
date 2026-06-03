@@ -3,15 +3,15 @@ import {
   FaInstagram,
   FaFacebook,
   FaLinkedin,
-} from "react-icons/fa";
-import { FaLocationDot } from "react-icons/fa6";
-import { IoMdMail } from "react-icons/io";
-import { BiSolidPhoneCall } from "react-icons/bi";
-import { motion } from "framer-motion";
-import { useFormik } from "formik";
-import { useMutation } from "@tanstack/react-query";
-import axiosInstance from "./../../config/axio";
-import toast from "react-hot-toast";
+} from 'react-icons/fa';
+import { FaLocationDot } from 'react-icons/fa6';
+import { IoMdMail } from 'react-icons/io';
+import { BiSolidPhoneCall } from 'react-icons/bi';
+import { motion } from 'framer-motion';
+import { useFormik } from 'formik';
+import { useMutation } from '@tanstack/react-query';
+import axiosInstance from './../../config/axio';
+import toast from 'react-hot-toast';
 
 function ContactUs() {
   const sendEmail = useMutation({

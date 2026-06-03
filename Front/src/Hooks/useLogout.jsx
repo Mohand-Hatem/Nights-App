@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useNavigate } from "react-router-dom";
-import axiosInstance from "../config/axio";
-import toast from "react-hot-toast";
-import { queryKeys } from "../lib/queryKeys";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+import axiosInstance from '../config/axio';
+import toast from 'react-hot-toast';
+import { queryKeys } from '../lib/queryKeys';
 
 function useLogout() {
   const homeNavi = useNavigate();

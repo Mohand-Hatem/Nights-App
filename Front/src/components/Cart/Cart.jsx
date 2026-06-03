@@ -1,11 +1,11 @@
-import { useMutation } from "@tanstack/react-query";
-import axiosInstance from "../../config/axio";
-import useCartCount from "../../Hooks/useCartCount";
-import useDeleteCart from "../../Hooks/useDeleteCart";
-import useCart from "../../Hooks/useCart";
-import { motion, AnimatePresence } from "framer-motion";
-import { PropagateLoader } from "react-spinners";
-import LazyImage from "../common/LazyImage";
+import { useMutation } from '@tanstack/react-query';
+import axiosInstance from '../../config/axio';
+import useCartCount from '../../Hooks/useCartCount';
+import useDeleteCart from '../../Hooks/useDeleteCart';
+import useCart from '../../Hooks/useCart';
+import { motion, AnimatePresence } from 'framer-motion';
+import { PropagateLoader } from 'react-spinners';
+import LazyImage from '../common/LazyImage';
 
 function Cart() {
   const rowVariants = {

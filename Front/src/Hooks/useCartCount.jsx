@@ -1,9 +1,9 @@
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../config/axio";
-import { useContext } from "react";
-import { AuthContext } from "../Context/Conex";
-import { cacheTimes } from "../lib/queryClient";
-import { queryKeys } from "../lib/queryKeys";
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../config/axio';
+import { useContext } from 'react';
+import { AuthContext } from '../Context/Conex';
+import { cacheTimes } from '../lib/queryClient';
+import { queryKeys } from '../lib/queryKeys';
 
 function useCartCount() {
   const { isAuth } = useContext(AuthContext);

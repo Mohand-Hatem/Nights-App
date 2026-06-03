@@ -1,7 +1,7 @@
-import Navbar from "../Navbar/Navbar";
-import { Outlet } from "react-router-dom";
-import Footer from "../Footer/Footer";
-import Scrollbase from "../Scrollbase/Scrollbase";
+import Navbar from '../Navbar/Navbar';
+import { Outlet } from 'react-router-dom';
+import Footer from '../Footer/Footer';
+import Scrollbase from '../Scrollbase/Scrollbase';
 
 function Layout() {
   return (

@@ -1,9 +1,9 @@
-import { useRef, useState } from "react";
-import LazyImage from "../common/LazyImage";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import useGetMovies from "../../Hooks/useGetMovies";
-import back from "../../assets/images/backit.jpg";
-import { useNavigate } from "react-router-dom";
+import { useRef, useState } from 'react';
+import LazyImage from '../common/LazyImage';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
+import useGetMovies from '../../Hooks/useGetMovies';
+import back from '../../assets/images/backit.jpg';
+import { useNavigate } from 'react-router-dom';
 
 function MovieCategory() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -25,7 +25,7 @@ function MovieCategory() {
     .slice(0, 4);
 
   return (
-    <section className="relative isolate mx-auto my-10 min-h-[520px] w-full overflow-hidden rounded-xl p-4 shadow-lg md:p-6">
+    <section className="relative isolate mx-auto mt-10 mb-3 min-h-[520px] w-full overflow-hidden rounded-xl p-4 shadow-lg md:mb-4 md:p-6">
       {/* Background image — z-0 inside isolate, not negative z */}
       <img
         src={back}
@@ -40,7 +40,7 @@ function MovieCategory() {
       />
 
       <div className="relative z-10">
-        <h2 className="theme-heading text-center text-3xl tracking-wide drop-shadow-md md:text-4xl">
+        <h2 className="theme-heading text-center text-3xl tracking-wide text-white drop-shadow-md md:text-4xl">
           Top Movies Now By Categories
         </h2>
 
@@ -55,10 +55,10 @@ function MovieCategory() {
             <li
               key={category}
               onClick={() => setActiveIndex(index)}
-              className={`cursor-pointer rounded-bl-3xl rounded-tr-3xl px-2 py-2 text-foreground transition-all duration-300 basis-2/6 md:basis-1/6 md:px-5 ${
+              className={`cursor-pointer rounded-bl-3xl rounded-tr-3xl px-2 py-2 transition-all duration-300 basis-2/6 md:basis-1/6 md:px-5 ${
                 activeIndex === index
-                  ? "theme-tab-active"
-                  : "theme-tab-inactive"
+                  ? 'bg-sky-600 text-white'
+                  : 'bg-card/90 text-foreground hover:bg-sky-600/90 hover:text-white'
               }`}
             >
               {category}

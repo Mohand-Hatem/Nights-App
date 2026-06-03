@@ -1,13 +1,13 @@
-import { useContext, useEffect, useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { FaShoppingCart } from "react-icons/fa";
-import { IoMdAddCircle } from "react-icons/io";
-import logo from "../../assets/logo.png";
-import { AuthContext } from "../../Context/Conex";
-import useLogout from "../../Hooks/useLogout";
-import useCartCount from "../../Hooks/useCartCount";
-import LazyImage from "../common/LazyImage";
-import ThemeToggle from "./ThemeToggle";
+import { useContext, useEffect, useState } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import { IoMdAddCircle } from 'react-icons/io';
+import logo from '../../assets/logo.png';
+import { AuthContext } from '../../Context/Conex';
+import useLogout from '../../Hooks/useLogout';
+import useCartCount from '../../Hooks/useCartCount';
+import LazyImage from '../common/LazyImage';
+import ThemeToggle from './ThemeToggle';
 
 const navLinkClass = ({ isActive }) =>
   `transition-colors duration-150 hover:text-accent ${

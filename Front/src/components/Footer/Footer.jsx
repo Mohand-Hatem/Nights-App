@@ -3,8 +3,8 @@ import {
   FaInstagram,
   FaLinkedin,
   FaWhatsapp,
-} from "react-icons/fa";
-import { Link } from "react-router-dom";
+} from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 
 function Footer() {
   return (

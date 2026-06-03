@@ -1,7 +1,7 @@
-import { useContext } from "react";
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../config/axio";
-import { AuthContext } from "../../Context/Conex";
+import { useContext } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../../config/axio';
+import { AuthContext } from '../../Context/Conex';
 
 function AdminProfile() {
   const { userImage } = useContext(AuthContext);

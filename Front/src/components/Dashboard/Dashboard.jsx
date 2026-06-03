@@ -1,11 +1,11 @@
-import { useContext, useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { FaUser, FaPlus, FaExchangeAlt, FaBars, FaTimes } from "react-icons/fa";
-import { MdDelete } from "react-icons/md";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../../config/axio";
-import { AuthContext } from "../../Context/Conex";
+import { useContext, useEffect, useState } from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { FaUser, FaPlus, FaExchangeAlt, FaBars, FaTimes } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
+import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../../config/axio';
+import { AuthContext } from '../../Context/Conex';
 
 function AdminCard({ userImage, username }) {
   return (

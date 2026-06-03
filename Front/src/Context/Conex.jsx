@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from "react";
-import useProfile from "../Hooks/useProfile";
+import { createContext, useEffect, useState } from 'react';
+import useProfile from '../Hooks/useProfile';
 
 export const AuthContext = createContext();
 

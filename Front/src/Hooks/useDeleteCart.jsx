@@ -1,7 +1,7 @@
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import axiosInstance from "../config/axio";
-import toast from "react-hot-toast";
-import { queryKeys } from "../lib/queryKeys";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axiosInstance from '../config/axio';
+import toast from 'react-hot-toast';
+import { queryKeys } from '../lib/queryKeys';
 
 function useDeleteCart() {
   const queryClient = useQueryClient();

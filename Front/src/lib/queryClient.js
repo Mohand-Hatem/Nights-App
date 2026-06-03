@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from '@tanstack/react-query';
 
 const FIVE_MINUTES = 1000 * 60 * 5;
 const TEN_MINUTES = 1000 * 60 * 10;

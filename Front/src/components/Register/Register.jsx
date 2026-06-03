@@ -1,13 +1,13 @@
-import { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import axiosInstance from "../../config/axio";
-import toast from "react-hot-toast";
-import * as Yup from "yup";
-import { GoogleLogin } from "@react-oauth/google";
-import { AuthContext } from "../../Context/Conex";
-import useGoogleAuth from "../../Hooks/useGoogleAuth";
-import { useTheme } from "../../Context/ThemeContext";
+import { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import axiosInstance from '../../config/axio';
+import toast from 'react-hot-toast';
+import * as Yup from 'yup';
+import { GoogleLogin } from '@react-oauth/google';
+import { AuthContext } from '../../Context/Conex';
+import useGoogleAuth from '../../Hooks/useGoogleAuth';
+import { useTheme } from '../../Context/ThemeContext';
 
 function Register() {
   const { setIsAuth } = useContext(AuthContext);

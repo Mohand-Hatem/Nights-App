@@ -1,8 +1,8 @@
-import { useState } from "react";
-import useGetMovies from "../../Hooks/useGetMovies";
-import MovieCard from "../MovieCard/MovieCard";
-import { PropagateLoader } from "react-spinners";
-import { motion } from "framer-motion";
+import { useState } from 'react';
+import useGetMovies from '../../Hooks/useGetMovies';
+import MovieCard from '../MovieCard/MovieCard';
+import { PropagateLoader } from 'react-spinners';
+import { motion } from 'framer-motion';
 
 function UpdateMovie() {
   const { data, isLoading, isError } = useGetMovies();

@@ -1,14 +1,14 @@
-import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import axiosInstance from "../../config/axio";
-import toast from "react-hot-toast";
-import { AuthContext } from "../../Context/Conex";
-import { useQueryClient } from "@tanstack/react-query";
-import { GoogleLogin } from "@react-oauth/google";
-import useGoogleAuth from "../../Hooks/useGoogleAuth";
-import { queryKeys } from "../../lib/queryKeys";
-import { useTheme } from "../../Context/ThemeContext";
+import { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useFormik } from 'formik';
+import axiosInstance from '../../config/axio';
+import toast from 'react-hot-toast';
+import { AuthContext } from '../../Context/Conex';
+import { useQueryClient } from '@tanstack/react-query';
+import { GoogleLogin } from '@react-oauth/google';
+import useGoogleAuth from '../../Hooks/useGoogleAuth';
+import { queryKeys } from '../../lib/queryKeys';
+import { useTheme } from '../../Context/ThemeContext';
 
 function Login() {
   const queryClient = useQueryClient();

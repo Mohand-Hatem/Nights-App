@@ -1,10 +1,10 @@
-import Marquee from "react-fast-marquee";
-import netflix from "../../assets/images/netflix.jpg";
-import prime from "../../assets/images/prime.png";
-import disney from "../../assets/images/disney.jpg";
-import youtube from "../../assets/images/youtube.jpg";
-import apple from "../../assets/images/apple.jpg";
-import LazyImage from "../common/LazyImage";
+import Marquee from 'react-fast-marquee';
+import netflix from '../../assets/images/netflix.jpg';
+import prime from '../../assets/images/prime.png';
+import disney from '../../assets/images/disney.jpg';
+import youtube from '../../assets/images/youtube.jpg';
+import apple from '../../assets/images/apple.jpg';
+import LazyImage from '../common/LazyImage';
 
 const images = [netflix, prime, disney, apple, youtube];
 

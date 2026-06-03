@@ -1,10 +1,10 @@
-import { useMutation } from "@tanstack/react-query";
-import { useFormik } from "formik";
-import React, { useState } from "react";
-import * as Yup from "yup";
-import axiosInstance from "../../config/axio";
-import toast from "react-hot-toast";
-import useGetCategories from "../../Hooks/useGetCategories";
+import { useMutation } from '@tanstack/react-query';
+import { useFormik } from 'formik';
+import React, { useState } from 'react';
+import * as Yup from 'yup';
+import axiosInstance from '../../config/axio';
+import toast from 'react-hot-toast';
+import useGetCategories from '../../Hooks/useGetCategories';
 
 function CreateMovie() {
   const [preview, setPreview] = useState(null);

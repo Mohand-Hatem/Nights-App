@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
-import { useQueryClient } from "@tanstack/react-query";
-import { toast } from "react-hot-toast";
-import axiosInstance from "../config/axio";
-import { queryKeys } from "../lib/queryKeys";
+import { useState } from 'react';
+import { jwtDecode } from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
+import { toast } from 'react-hot-toast';
+import axiosInstance from '../config/axio';
+import { queryKeys } from '../lib/queryKeys';
 
 export default function useGoogleAuth(setIsAuth) {
   const [loading, setLoading] = useState(false);

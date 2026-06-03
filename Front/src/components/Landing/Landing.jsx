@@ -1,7 +1,7 @@
-import React from "react";
-import { FaUserPlus } from "react-icons/fa";
-import landVid from "../../assets/images/vid.mp4";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { FaUserPlus } from 'react-icons/fa';
+import landVid from '../../assets/images/vid.mp4';
+import { Link } from 'react-router-dom';
 
 function Landing() {
   return (

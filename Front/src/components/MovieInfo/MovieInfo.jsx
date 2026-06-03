@@ -1,8 +1,8 @@
-import { useParams } from "react-router-dom";
-import { motion } from "framer-motion";
-import { PropagateLoader } from "react-spinners";
-import useGetBook from "../../Hooks/useGetBook";
-import LazyImage from "../common/LazyImage";
+import { useParams } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { PropagateLoader } from 'react-spinners';
+import useGetBook from '../../Hooks/useGetBook';
+import LazyImage from '../common/LazyImage';
 
 function BookInfo() {
   const { id } = useParams();

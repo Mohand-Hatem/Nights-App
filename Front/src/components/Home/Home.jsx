@@ -1,28 +1,28 @@
-import { lazy, Suspense, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { motion, useInView } from "framer-motion";
-import ReactPaginate from "react-paginate";
-import { FaShoppingCart, FaFireAlt } from "react-icons/fa";
-import { PropagateLoader } from "react-spinners";
-import useGetMovies from "../../Hooks/useGetMovies";
-import useAddCart from "../../Hooks/useAddCart";
-import LazyImage from "../common/LazyImage";
-import PageLoader from "../common/PageLoader";
+import { lazy, Suspense, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { motion, useInView } from 'framer-motion';
+import ReactPaginate from 'react-paginate';
+import { PropagateLoader } from 'react-spinners';
+import useGetMovies from '../../Hooks/useGetMovies';
+import useAddCart from '../../Hooks/useAddCart';
+import PageLoader from '../common/PageLoader';
+import TrendingMovieCard from './TrendingMovieCard';
 
-const Homeslider = lazy(() => import("../Homeslider/Homeslider"));
-const Tvs = lazy(() => import("../Tvs/Tvs"));
-const MovieCategory = lazy(() => import("../MovieCategory/MovieCategory"));
+const Homeslider = lazy(() => import('../Homeslider/Homeslider'));
+const Tvs = lazy(() => import('../Tvs/Tvs'));
+const MovieCategory = lazy(() => import('../MovieCategory/MovieCategory'));
+
+const ITEMS_PER_PAGE = 8;
 
 function Home() {
   const { data: Movies, isLoading, isError } = useGetMovies();
   const addToCart = useAddCart();
-  const naviCard = useNavigate();
+  const navigate = useNavigate();
 
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 8;
-
-  const targetRef = useRef(false);
-  const isInView = useInView(targetRef, { once: true });
+  const trendingRef = useRef(null);
+  const gridRef = useRef(null);
+  const isInView = useInView(gridRef, { once: true, margin: '-40px' });
 
   if (isLoading) {
     return (
@@ -41,12 +41,13 @@ function Home() {
   }
 
   const safeMovies = Movies || [];
-  const start = currentPage * itemsPerPage;
-  const currentItems = safeMovies.slice(start, start + itemsPerPage);
+  const start = currentPage * ITEMS_PER_PAGE;
+  const currentItems = safeMovies.slice(start, start + ITEMS_PER_PAGE);
+  const pageCount = Math.ceil(safeMovies.length / ITEMS_PER_PAGE);
 
-  const handlePageClick = (data) => {
-    setCurrentPage(data.selected);
-    window.scrollTo({ top: 1400, left: 0, behavior: "smooth" });
+  const handlePageClick = ({ selected }) => {
+    setCurrentPage(selected);
+    trendingRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   return (
@@ -57,81 +58,68 @@ function Home() {
         <MovieCategory />
       </Suspense>
 
-      <div className="theme-badge relative -mb-3 ml-5 mt-10 flex w-fit items-end px-8 py-3 text-lg font-extrabold text-accent animate-fade-in">
-        <FaFireAlt className="mr-2 inline animate-pulse" />
-        <h1>Trending Now</h1>
-      </div>
-
-      <motion.div
-        ref={targetRef}
-        initial={{ x: -100, opacity: 0 }}
-        animate={isInView ? { x: 0, opacity: 1 } : { x: -100, opacity: 0 }}
-        transition={{ duration: 0.5 }}
-        className="grid grid-cols-1 gap-8 p-7 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      <section
+        ref={trendingRef}
+        className="trending-section mx-auto max-w-7xl px-4 md:px-6"
       >
-        {currentItems.map((movie) => (
-          <div
-            key={movie._id}
-            className="group theme-card cursor-pointer overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:scale-[1.03] hover:shadow-amber-500/20"
-          >
-            <div
-              onClick={() => naviCard(`/book/${movie._id}`)}
-              className="relative h-80 w-full overflow-hidden"
-            >
-              <LazyImage
-                src={movie.bookImage}
-                alt={movie.title}
-                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-              />
-              {movie.onSale && (
-                <span className="absolute left-3 top-3 rounded-full bg-purple-600 px-3 py-1 text-xs font-semibold text-white">
-                  On Sale
-                </span>
-              )}
-            </div>
-
-            <div className="flex h-56 flex-col justify-between p-5">
-              <div>
-                <h1 className="mb-1 line-clamp-1 text-xl font-semibold text-accent">
-                  {movie.title}
-                </h1>
-                <p className="theme-muted mb-2 text-sm">by {movie.author}</p>
-                <p className="line-clamp-2 text-sm text-foreground">
-                  {movie.description}
-                </p>
-                <p className="theme-muted mt-3 line-clamp-2 text-sm">
-                  Available {movie.stock}
-                </p>
-              </div>
-
-              <div className="mt-3 flex items-center justify-between">
-                <p className="text-sm font-bold text-green-600 md:text-lg">
-                  {movie.price} EGP
-                </p>
-                <button
-                  onClick={() => addToCart.mutate({ bookId: movie._id })}
-                  className="z-20 flex cursor-pointer items-center gap-2 rounded-lg bg-purple-600 px-3 py-2 text-sm text-white transition-all duration-200 hover:bg-purple-700"
-                >
-                  <FaShoppingCart /> Add Cart
-                </button>
-              </div>
-            </div>
+        <header className="mb-8 flex flex-col gap-4 border-b border-border pb-6 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+              Featured catalog
+            </p>
+            <h2 className="mt-1 text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              Trending Now
+            </h2>
+            <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted">
+              Hand-picked titles customers are browsing most this week.
+            </p>
           </div>
-        ))}
-      </motion.div>
+          <p className="text-sm font-medium text-muted">
+            Showing {currentItems.length} of {safeMovies.length} movies
+          </p>
+        </header>
 
-      <ReactPaginate
-        previousLabel={"Previous"}
-        nextLabel={"Next"}
-        pageCount={Math.ceil(safeMovies.length / itemsPerPage)}
-        onPageChange={handlePageClick}
-        containerClassName={"pagi"}
-        activeClassName={"actives"}
-        pageClassName={"page-item"}
-        previousClassName={"page-item"}
-        nextClassName={"page-item"}
-        breakClassName={"page-item"}
-      />
+        <motion.div
+          ref={gridRef}
+          initial={{ opacity: 0, y: 24 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+          transition={{ duration: 0.45, ease: 'easeOut' }}
+          className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          {currentItems.map((movie, index) => (
+            <motion.div
+              key={movie._id}
+              initial={{ opacity: 0, y: 16 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+              transition={{ duration: 0.35, delay: index * 0.04 }}
+              className="h-full"
+            >
+              <TrendingMovieCard
+                movie={movie}
+                onOpen={(id) => navigate(`/book/${id}`)}
+                onAddToCart={(id) => addToCart.mutate({ bookId: id })}
+              />
+            </motion.div>
+          ))}
+        </motion.div>
+
+        {pageCount > 1 && (
+          <ReactPaginate
+            previousLabel="Previous"
+            nextLabel="Next"
+            pageCount={pageCount}
+            onPageChange={handlePageClick}
+            forcePage={currentPage}
+            containerClassName="trending-pagi"
+            activeClassName="trending-pagi-active"
+            pageClassName="trending-pagi-item"
+            previousClassName="trending-pagi-item"
+            nextClassName="trending-pagi-item"
+            breakClassName="trending-pagi-item"
+            disabledClassName="trending-pagi-disabled"
+          />
+        )}
+      </section>
     </>
   );
 }

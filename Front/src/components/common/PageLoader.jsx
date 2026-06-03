@@ -1,4 +1,4 @@
-import { PropagateLoader } from "react-spinners";
+import { PropagateLoader } from 'react-spinners';
 
 function PageLoader() {
   return (

@@ -1,10 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import axiosInstance from "../config/axio";
-import adminImg from "../assets/images/one.jpg";
-import adminImge from "../assets/images/two.jpg";
-import femaleImg from "../assets/images/female.jpg";
-import { cacheTimes } from "../lib/queryClient";
-import { queryKeys } from "../lib/queryKeys";
+import { useQuery } from '@tanstack/react-query';
+import axiosInstance from '../config/axio';
+import adminImg from '../assets/images/one.jpg';
+import adminImge from '../assets/images/two.jpg';
+import femaleImg from '../assets/images/female.jpg';
+import { cacheTimes } from '../lib/queryClient';
+import { queryKeys } from '../lib/queryKeys';
 
 export default function useProfile() {
   return useQuery({

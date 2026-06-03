@@ -1,4 +1,4 @@
-import { MdEngineering } from "react-icons/md";
+import { MdEngineering } from 'react-icons/md';
 
 function GeneralAdmin() {
   return (

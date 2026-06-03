@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import Slider from "react-slick";
-import { motion } from "framer-motion";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import oneSlider from "../../assets/images/1.jpg";
-import twoSlider from "../../assets/images/2.jpg";
-import threeSlider from "../../assets/images/3.png";
-import fourSlider from "../../assets/images/4.jpg";
-import fiveSlider from "../../assets/images/5.jpg";
-import sixSlider from "../../assets/images/6.jpg";
-import sevenSlider from "../../assets/images/7.jpg";
-import eightSlider from "../../assets/images/8.jpg";
-import nineSlider from "../../assets/images/9.jpg";
-import tenlider from "../../assets/images/10.jpg";
-import elevenSlider from "../../assets/images/11.jpg";
-import twelveSlider from "../../assets/images/12.jpg";
-import thirteenSlider from "../../assets/images/13.png";
-import LazyImage from "../common/LazyImage";
+import { useEffect, useState } from 'react';
+import Slider from 'react-slick';
+import { motion } from 'framer-motion';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import oneSlider from '../../assets/images/1.jpg';
+import twoSlider from '../../assets/images/2.jpg';
+import threeSlider from '../../assets/images/3.png';
+import fourSlider from '../../assets/images/4.jpg';
+import fiveSlider from '../../assets/images/5.jpg';
+import sixSlider from '../../assets/images/6.jpg';
+import sevenSlider from '../../assets/images/7.jpg';
+import eightSlider from '../../assets/images/8.jpg';
+import nineSlider from '../../assets/images/9.jpg';
+import tenlider from '../../assets/images/10.jpg';
+import elevenSlider from '../../assets/images/11.jpg';
+import twelveSlider from '../../assets/images/12.jpg';
+import thirteenSlider from '../../assets/images/13.png';
+import LazyImage from '../common/LazyImage';
 
 const sliderImages = [
   oneSlider,
