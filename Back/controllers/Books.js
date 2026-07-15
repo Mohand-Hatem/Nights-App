@@ -1,4 +1,5 @@
 import bookSchema from "../models/Books.js";
+import axios from "axios";
 
 export const createBook = async (req, res) => {
   try {
@@ -22,6 +23,17 @@ export const createBook = async (req, res) => {
       });
     }
     res.status(200).json({ message: "success", newBook });
+    await axios.post(process.env.N8N_WEBHOOK_URL, {
+      title: newBook.title,
+      author: newBook.author,
+      price: newBook.price,
+      description: newBook.description,
+      stock: newBook.stock,
+      onSale: newBook.onSale,
+      category: newBook.category,
+      bookImage: newBook.bookImage,
+      star: newBook.star,
+    });
   } catch (error) {
     res.status(400).json({
       message: "faill",
