@@ -1,5 +1,7 @@
 import bookSchema from "../models/Books.js";
 import axios from "axios";
+import dotenv from "dotenv";
+dotenv.config();
 
 export const createBook = async (req, res) => {
   try {
