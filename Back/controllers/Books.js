@@ -5,6 +5,14 @@ export const createBook = async (req, res) => {
   try {
     const { title, author, price, description, stock, onSale, category, star } =
       req.body;
+
+    if (!title || !author || !price || !description) {
+      return res.status(400).json({
+        message: "faill",
+        error: "title-author-descirption-price are required",
+      });
+    }
+
     const newBook = await bookSchema.create({
       title,
       author,
@@ -16,29 +24,30 @@ export const createBook = async (req, res) => {
       bookImage: req.file?.path,
       star,
     });
-    if (!title || !author || !price || !description) {
-      res.status(400).json({
-        message: "faill",
-        error: "title-author-descirption-price are required",
-      });
-    }
+
     res.status(200).json({ message: "success", newBook });
-    await axios.post(process.env.N8N_WEBHOOK_URL, {
-      title: newBook.title,
-      author: newBook.author,
-      price: newBook.price,
-      description: newBook.description,
-      stock: newBook.stock,
-      onSale: newBook.onSale,
-      category: newBook.category,
-      bookImage: newBook.bookImage,
-      star: newBook.star,
-    });
+
+    console.log("Sending to n8n:", process.env.N8N_WEBHOOK_URL);
+
+    axios
+      .post(process.env.N8N_WEBHOOK_URL, {
+        title: newBook.title,
+        author: newBook.author,
+        price: newBook.price,
+        description: newBook.description,
+        stock: newBook.stock,
+        onSale: newBook.onSale,
+        category: newBook.category,
+        bookImage: newBook.bookImage,
+        star: newBook.star,
+      })
+      .then(() => console.log("n8n webhook sent successfully"))
+      .catch((err) => console.error("n8n webhook failed:", err.message));
   } catch (error) {
-    res.status(400).json({
-      message: "faill",
-      error: error.message,
-    });
+    console.error("createBook error:", error.message);
+    if (!res.headersSent) {
+      res.status(400).json({ message: "faill", error: error.message });
+    }
   }
 };
 
